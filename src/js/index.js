@@ -55,8 +55,8 @@ function Glideable({selector}) {
     )
   }
   
-  function calcCurrentPosition(pointerCurrent) {
-    const distanceMoved = pointerCurrent - state.pointerMoveOrigin 
+  function calcCurrentPosition(pointerPositionX) {
+    const distanceMoved = pointerPositionX - state.pointerMoveOrigin 
     const position = (distanceMoved / state.distanceToNext) + state.restingPosition
     const throttle = .3
   
@@ -71,8 +71,8 @@ function Glideable({selector}) {
     return position 
   }
   
-  function calcRestingPosition(pointerCurrent) {
-    const currentPosition = calcCurrentPosition(pointerCurrent)
+  function calcRestingPosition(pointerPositionX) {
+    const currentPosition = calcCurrentPosition(pointerPositionX)
     const diff = state.restingPosition - currentPosition 
     const threshold = .3
   
