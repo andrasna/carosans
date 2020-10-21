@@ -29,10 +29,10 @@ Modify these styles only if necessary.
 .glideable > ul > li {
   min-width: calc(var(--slideWidth));
   margin-right: var(--gapSize, 0rem);
+}
 
-  &:last-child {
-    margin-right: 0;
-  }
+.glideable > ul > li:last-child {
+  margin-right: 0;
 }
 
 .glideable img {
