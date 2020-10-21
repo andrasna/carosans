@@ -1,4 +1,4 @@
-export function glideableElements({selector}) {
+export function glideableElements(selector) {
   return {
     get container() {
       return document.querySelector(selector)

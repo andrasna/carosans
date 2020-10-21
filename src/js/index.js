@@ -3,7 +3,7 @@ import {glideableState} from './state.js'
 import {glideableClassNames} from './attrNames.js'
 import {getWidth, setCSSValue} from './utils.js'
 
-function Glideable(selector) {
+function Glideable({selector}) {
   const state = glideableState()
   const elements = glideableElements(selector)
 
