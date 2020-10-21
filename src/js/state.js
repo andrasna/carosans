@@ -1,6 +1,6 @@
 function glideableState() {
   return {
-    pointerMoveOrigin: 0,
+    pointerXOrigin: 0,
     restingPosition: 0,
     distanceToNext: 0,
     positionLimitLeft: 0,
