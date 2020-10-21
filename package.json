@@ -9,7 +9,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild src/js/index.js --bundle --outfile=build/js/index.js"
+    "build": "esbuild src/js/index.js --bundle --minify --outfile=build/js/index.js"
   },
   "repository": {
     "type": "git",
