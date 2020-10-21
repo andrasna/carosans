@@ -1,0 +1,27 @@
+/*
+
+Customize values and media queries here.
+
+*/
+
+.glideable {
+  --numSlidesInView: 1;
+  --endSlideVis: .3; 
+  --gapSize: 1rem;
+  --transitionDuration: .35s;
+  --transitionTiming: ease;
+
+}
+
+@media (min-width: 50rem) {
+  .glideable {
+    --numSlidesInView: 3;
+    --gapSize: 1.5rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .glideable {
+    --numSlidesInView: 4;
+  }
+}

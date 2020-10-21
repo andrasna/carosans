@@ -1,0 +1,46 @@
+/*
+
+Minimal layer to make the carousel work.
+Modify these styles only if necessary.
+
+*/
+
+.glideable {
+  --position: 0;
+  --sumGaps: calc(var(--gapSize, 0rem) * (var(--numSlidesInView, 0)));
+  --distributableSpace: calc(100% - var(--sumGaps));
+  --slideWidth: calc(var(--distributableSpace) / ((var(--numSlidesInView, 0) + 1) - (1 - var(--endSlideVis, 0))));
+
+  --translateUnit: calc(var(--slideWidth) + var(--gapSize));
+  --lastSlideWidth: calc(var(--slideWidth) * (1 - var(--lastSlideVis)));
+
+  --translateX: calc(var(--translateUnit) * var(--position));
+
+  overflow: hidden;
+}
+
+.glideable > ul {
+  transform: translate3d(var(--translateX), 0, 0);
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+}
+
+.glideable > ul > li {
+  min-width: calc(var(--slideWidth));
+  margin-right: var(--gapSize, 0rem);
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.glideable img {
+  max-width: 100%;
+}
+
+.is-transitioning {
+  transition-property: transform;
+  transition-duration: var(--transitionDuration);
+  transition-timing-function: var(--transitionTiming);
+}
