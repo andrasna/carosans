@@ -1,0 +1,24 @@
+{
+  "name": "glideable",
+  "version": "1.0.0",
+  "description": "Glideable",
+  "main": "index.js",
+  "dependencies": {
+    "esbuild": "^0.7.19"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild src/js/index.js --bundle --outfile=build/js/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrasna/glideable.git"
+  },
+  "author": "Andras Nagy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrasna/glideable/issues"
+  },
+  "homepage": "https://github.com/andrasna/glideable#readme"
+}
