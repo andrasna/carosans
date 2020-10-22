@@ -9,17 +9,17 @@ function Glideable({selector}) {
 
   // Events
 
-  function prepareForSwipingMotion(e) {
-    e.preventDefault()
+  function prepareForSwipingMotion(event) {
+    event.preventDefault()
     state.distanceToNext = calcDistanceToNext()
     state.positionLimitRight = calcPositionLimitRight()
-    state.pointerXOrigin = e.clientX
+    state.pointerXOrigin = event.clientX
     document.addEventListener('pointermove', startTranslating)
     document.addEventListener('pointerup', handlePointerUp)
   }
 
-  function handleTransitionEnd(e) {
-    e.currentTarget.classList.remove(glideableClassNames.isTransitioning)
+  function handleTransitionEnd(event) {
+    event.currentTarget.classList.remove(glideableClassNames.isTransitioning)
   }
 
   function handleResize() {
@@ -31,8 +31,8 @@ function Glideable({selector}) {
     }
   }
 
-  function handlePointerUp(e) {
-    translateToRestingPosition(calcRestingPosition(e.clientX))
+  function handlePointerUp(event) {
+    translateToRestingPosition(calcRestingPosition(event.clientX))
     document.removeEventListener('pointermove', startTranslating)
     document.removeEventListener('pointerup', handlePointerUp)
   }
@@ -105,8 +105,8 @@ function Glideable({selector}) {
     state.restingPosition = position
   }
   
-  function startTranslating(e) {
-    setCSSValue(elements.container, '--position', calcCurrentPosition(e.clientX))
+  function startTranslating(event) {
+    setCSSValue(elements.container, '--position', calcCurrentPosition(event.clientX))
   }
 
   window.addEventListener('resize', handleResize)
