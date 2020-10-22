@@ -25,3 +25,7 @@ Customize values and media queries here.
     --numSlidesInView: 4;
   }
 }
+
+.glideable ul {
+  margin-bottom: 1.5rem;
+}
