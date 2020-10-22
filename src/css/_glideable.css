@@ -24,7 +24,7 @@ Modify these styles only if necessary.
   list-style: none;
   padding-left: 0;
   display: flex;
-  touch-action: none;
+  touch-action: pan-y pinch-zoom;
 }
 
 .glideable > ul > li {
