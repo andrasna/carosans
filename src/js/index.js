@@ -10,7 +10,7 @@ function Glideable({selector}) {
   // Events
 
   function prepareForSwipingMotion(e) {
-    // e.preventDefault()
+    e.preventDefault()
     state.distanceToNext = calcDistanceToNext()
     state.positionLimitRight = calcPositionLimitRight()
     state.pointerXOrigin = e.clientX
