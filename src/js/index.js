@@ -136,6 +136,10 @@ function Glideable({selector}) {
     translateToRestingPosition(Math.min(state.positionLimitEnd, Math.max(0, Number(position))))
   }
 
+  function getNumOfSlides() {
+    return elements.slides.getElementsByTagName('li').length
+  }
+
   // Events
 
   window.addEventListener('resize', handleResize)
@@ -166,7 +170,7 @@ function Glideable({selector}) {
     },
 
     length() {
-      return elements.slides.getElementsByTagName('li').length
+      return getNumOfSlides()
     },
   }
 }
