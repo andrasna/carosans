@@ -20,6 +20,7 @@ function Glideable({selector}) {
     state.pointerXOrigin = event.clientX
 
     // Events
+
     document.addEventListener('pointermove', startTranslating)
     document.addEventListener('pointerup', handlePointerUp)
   }
@@ -145,6 +146,7 @@ function Glideable({selector}) {
   window.addEventListener('resize', handleResize)
   elements.container.addEventListener('pointerdown', prepareForSwipingMotion)
   elements.slides.addEventListener('transitionend', handleTransitionEnd)
+
   prepareForMotion()
 
   // API
