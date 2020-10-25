@@ -1,23 +1,29 @@
 export function glideableElements(selector) {
+  const container = document.querySelector(selector)
+
+  if (container === null) {
+    throw new Error(`Selector did not match.`)
+  }
+
   return {
     get container() {
-      return document.querySelector(selector)
+      return container
     },
 
     get slides() {
-      return this.container.querySelector('ul:first-child')
+      return container.querySelector('ul:first-child')
     },
 
     get firstSlide() {
-      return this.container.querySelector('li:first-child')
+      return container.querySelector('li:first-child')
     },
     
     get secondSlide() {
-      return this.container.querySelector('li:nth-child(2)')
+      return container.querySelector('li:nth-child(2)')
     },
 
     get lastSlide() {
-      return this.container.querySelector('li:last-child')
+      return container.querySelector('li:last-child')
     },
   }
 }

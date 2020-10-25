@@ -7,13 +7,19 @@ function Glideable({selector}) {
   const state = glideableState()
   const elements = glideableElements(selector)
 
-  // Events
+  // Handlers 
+
+  function prepareForMotion() {
+    state.distanceToNext = calcDistanceToNext()
+    state.positionLimitEnd = calcPositionLimitEnd()
+  }
 
   function prepareForSwipingMotion(event) {
     event.preventDefault()
-    state.distanceToNext = calcDistanceToNext()
-    state.positionLimitRight = calcPositionLimitRight()
+    prepareForMotion()
     state.pointerXOrigin = event.clientX
+
+    // Events
     document.addEventListener('pointermove', startTranslating)
     document.addEventListener('pointerup', handlePointerUp)
   }
@@ -23,11 +29,10 @@ function Glideable({selector}) {
   }
 
   function handleResize() {
-    state.distanceToNext = calcDistanceToNext()
-    state.positionLimitRight = calcPositionLimitRight()
+    prepareForMotion()
 
-    if (state.restingPosition < state.positionLimitRight) {
-      translateToRestingPosition(state.positionLimitRight)
+    if (state.restingPosition > state.positionLimitEnd) {
+      translateToRestingPosition(state.positionLimitEnd)
     }
   }
 
@@ -45,27 +50,27 @@ function Glideable({selector}) {
       elements.firstSlide.getBoundingClientRect().left
     )
   }
-  
-  function calcPositionLimitRight() {
+
+  function calcPositionLimitEnd() {
     return(
-      -(Math.abs(elements.firstSlide.getBoundingClientRect().left) +
+      (Math.abs(elements.firstSlide.getBoundingClientRect().left) +
         elements.lastSlide.getBoundingClientRect().right -
         getWidth(elements.container)
       ) / state.distanceToNext
     )
   }
-  
+
   function calcCurrentPosition(pointerXCurrent) {
     const distanceMoved = pointerXCurrent - state.pointerXOrigin 
-    const position = (distanceMoved / state.distanceToNext) + state.restingPosition
+    const position = -(distanceMoved / state.distanceToNext) + state.restingPosition
     const throttle = .3
   
-    if (position > state.positionLimitLeft) {
+    if (position < state.positionLimitStart) {
       return position * throttle
     }
     
-    if (position < state.positionLimitRight) {
-      return state.positionLimitRight + ((position - state.positionLimitRight) * throttle)
+    if (position > state.positionLimitEnd) {
+      return state.positionLimitEnd + ((position - state.positionLimitEnd) * throttle)
     }
 
     return position 
@@ -73,27 +78,27 @@ function Glideable({selector}) {
   
   function calcRestingPosition(pointerXCurrent) {
     const currentPosition = calcCurrentPosition(pointerXCurrent)
-    const diff = state.restingPosition - currentPosition 
-    const threshold = .3
+    const diff = currentPosition - state.restingPosition 
+    const threshold = .2
   
     if (Math.abs(diff) < threshold) {
       return state.restingPosition
     }
     
-    if (currentPosition > state.positionLimitLeft) {
-      return state.positionLimitLeft
+    if (currentPosition < state.positionLimitStart) {
+      return state.positionLimitStart
     }
     
-    if (currentPosition < state.positionLimitRight) {
-      return state.positionLimitRight
+    if (currentPosition > state.positionLimitEnd) {
+      return state.positionLimitEnd
     } 
     
     if (diff > 0) {
-      return Math.max(state.positionLimitRight, (Math.floor(currentPosition)))
+      return Math.min(state.positionLimitEnd, (Math.ceil(currentPosition)))
     }
 
     if (diff < 0) {
-      return Math.ceil(currentPosition)
+      return Math.floor(currentPosition)
     }
   }
 
@@ -109,15 +114,61 @@ function Glideable({selector}) {
     setCSSValue(elements.container, '--position', calcCurrentPosition(event.clientX))
   }
 
+  // Controls
+
+  function getCurrentPosition() {
+    return state.restingPosition
+  }
+
+  function toNextPosition() {
+    translateToRestingPosition(Math.min(state.positionLimitEnd, state.restingPosition + 1))
+  }
+
+  function toPreviousPosition() {
+    translateToRestingPosition(Math.max(0, state.restingPosition - 1))
+  }
+
+  function toPosition(position) {
+    if (isNaN(position)) {
+      throw new Error('Position must be a number.')
+    }
+
+    translateToRestingPosition(Math.min(state.positionLimitEnd, Math.max(0, Number(position))))
+  }
+
+  // Events
+
   window.addEventListener('resize', handleResize)
   elements.container.addEventListener('pointerdown', prepareForSwipingMotion)
   elements.slides.addEventListener('transitionend', handleTransitionEnd)
+  prepareForMotion()
+
+  // API
+
+  return {
+    pos() {
+      return getCurrentPosition()
+    },
+
+    next() {
+      toNextPosition()
+      return this
+    },
+
+    prev() {
+      toPreviousPosition()
+      return this
+    },
+
+    to(pos = 0) {
+      toPosition(pos)
+      return this
+    },
+
+    length() {
+      return elements.slides.getElementsByTagName('li').length
+    },
+  }
 }
 
-Glideable({
-  selector: '.one'
-})
-
-Glideable({
-  selector: '.two'
-})
+export {Glideable}

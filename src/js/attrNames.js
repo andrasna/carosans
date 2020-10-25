@@ -1,3 +1,3 @@
 export const glideableClassNames = {
-  isTransitioning: 'is-transitioning',
+  isTransitioning: 'glideable-transitioning',
 }
