@@ -14,9 +14,7 @@ function Glideable({
   // Handlers
 
   function prepareForMotion() {
-    if (cursor === 'grab') {
-      elements.container.style.cursor = 'grab'
-    }
+    setCursorStyle(false)
     state.distanceToNext = calcDistanceToNext()
     state.positionLimitEnd = calcPositionLimitEnd()
   }
