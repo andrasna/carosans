@@ -14,9 +14,9 @@ Find examples of how to customize the carousel with CSS here:
 
 .glideable {
   --position: 0;
-  --sumGaps: calc(var(--gapSize, 0rem) * (var(--numSlidesInView, 0)));
+  --sumGaps: calc(var(--gapSize, 0rem) * (var(--numOfSlidesInView, 0)));
   --distributableSpace: calc(100% - var(--sumGaps));
-  --slideWidth: calc(var(--distributableSpace) / ((var(--numSlidesInView, 1) + 1) - (1 - var(--endSlideVis, 0))));
+  --slideWidth: calc(var(--distributableSpace) / ((var(--numOfSlidesInView, 1) + 1) - (1 - var(--endSlideVis, 0))));
 
   --translateUnit: calc(var(--slideWidth) + var(--gapSize, 0rem));
   --lastSlideWidth: calc(var(--slideWidth) * (1 - var(--lastSlideVis, 0)));
