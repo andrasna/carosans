@@ -165,7 +165,7 @@ function Glideable({
     return elements.slides.getElementsByTagName('li').length
   }
 
-  function numOfSlidesInView() {
+  function getNumOfSlidesInView() {
     return Number(getCSSValue(elements.container, '--numOfSlidesInView'))
   }
 
@@ -204,7 +204,7 @@ function Glideable({
     },
 
     countInView() {
-      return numOfSlidesInView()
+      return getNumOfSlidesInView()
     },
 
     countSteps() {
