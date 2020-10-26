@@ -208,7 +208,7 @@ function Glideable({
     },
 
     countSteps() {
-      return this.length() - this.inView()
+      return this.count() - this.countInView()
     },
   }
 }
