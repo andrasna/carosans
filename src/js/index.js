@@ -199,15 +199,15 @@ function Glideable({
       return this
     },
 
-    length() {
+    count() {
       return getNumOfSlides()
     },
 
-    inView() {
+    countInView() {
       return numOfSlidesInView()
     },
 
-    steps() {
+    countSteps() {
       return this.length() - this.inView()
     },
   }

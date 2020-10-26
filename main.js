@@ -6,9 +6,9 @@ const a1 = Glideable({
   minMoveToChangePosition: 75,
 })
 
-console.log(a1.length())
-console.log(a1.steps())
-console.log(a1.inView())
+console.log(a1.count())
+console.log(a1.countSteps())
+console.log(a1.countInView())
 
 const a2 = Glideable({
   selector: '.two'
