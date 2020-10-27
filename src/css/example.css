@@ -11,7 +11,7 @@ ul {
 
 .one {
   --numOfSlidesInView: 1;
-  --endSlideVis: .3; 
+  --endSlideVis: .3;
   --gapSize: 1rem;
   --transitionDuration: .35s;
   --transitionTiming: ease;

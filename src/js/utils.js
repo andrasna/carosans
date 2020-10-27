@@ -2,7 +2,7 @@ export function getWidth(el) {
   return el.clientWidth
 }
 
-export function getCSSValue(el, prop){
+export function getCSSValue(el, prop) {
   return window.getComputedStyle(el).getPropertyValue(prop)
 }
 

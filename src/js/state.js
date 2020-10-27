@@ -8,4 +8,4 @@ function glideableState() {
   }
 }
 
-export {glideableState}
+export { glideableState }

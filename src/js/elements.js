@@ -2,7 +2,7 @@ export function glideableElements(selector) {
   const container = document.querySelector(selector)
 
   if (container === null) {
-    throw new Error(`Selector did not match.`)
+    throw new Error('Selector did not match.')
   }
 
   return {
@@ -17,7 +17,7 @@ export function glideableElements(selector) {
     get firstSlide() {
       return container.querySelector('li:first-child')
     },
-    
+
     get secondSlide() {
       return container.querySelector('li:nth-child(2)')
     },
