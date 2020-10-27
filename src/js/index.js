@@ -92,7 +92,7 @@ function Glideable({
       return Math.floor(currentPosition)
     }
 
-    return false
+    throw new Error('Function should have returned a value.')
   }
 
   // Translate Position
