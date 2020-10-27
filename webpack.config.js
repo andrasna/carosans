@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = (env) => {
-  const inDev = env !== undefined
+  const devMode = env !== undefined
   const config = {}
 
   config.entry = {
@@ -21,10 +21,10 @@ module.exports = (env) => {
       {
         test: /\.css$/i,
         use: [
-          ...(!inDev ? [
+          ...(!devMode ? [
             MiniCssExtractPlugin.loader,
           ] : []),
-          ...(inDev ? [
+          ...(devMode ? [
             'style-loader',
           ] : []),
           'css-loader',
@@ -35,7 +35,7 @@ module.exports = (env) => {
   }
 
   config.plugins = [
-    ...(!inDev ? [
+    ...(!devMode ? [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
         filename: '[name].css',
