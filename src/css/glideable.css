@@ -31,7 +31,7 @@ Find examples of how to customize the carousel with CSS here:
   list-style: none;
   padding-left: 0;
   display: flex;
-  touch-action: pan-y pinch-zoom;
+  touch-action: pan-y;
 }
 
 .glideable > ul > li {

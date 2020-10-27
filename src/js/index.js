@@ -7,6 +7,7 @@ function Glideable({
     selector,
     minMoveToChangePosition = 100,
     cursor = '',
+    rtl = false,
   }) {
   const state = glideableState()
   const elements = glideableElements(selector)
@@ -126,8 +127,11 @@ function Glideable({
 
   // Translate Position
 
-  function translateToRestingPosition(position) {
-    elements.slides.classList.add(glideableClassNames.isTransitioning)
+  function translateToRestingPosition(position, transition = true) {
+    if (transition === true) {
+      elements.slides.classList.add(glideableClassNames.isTransitioning)
+    }
+
     setCSSValue(elements.container, '--position', position)
     state.restingPosition = position
   }
@@ -143,20 +147,20 @@ function Glideable({
     return state.restingPosition
   }
 
-  function toNextPosition() {
-    translateToRestingPosition(Math.min(state.positionLimitEnd, state.restingPosition + 1))
+  function toNextPosition(transition) {
+    translateToRestingPosition(Math.min(state.positionLimitEnd, state.restingPosition + 1), transition)
   }
 
-  function toPreviousPosition() {
-    translateToRestingPosition(Math.max(0, state.restingPosition - 1))
+  function toPreviousPosition(transition) {
+    translateToRestingPosition(Math.max(0, state.restingPosition - 1), transition)
   }
 
-  function toPosition(position) {
+  function toPosition(position, transition) {
     if (isNaN(position)) {
       throw new Error('Position must be a number.')
     }
 
-    translateToRestingPosition(Math.min(state.positionLimitEnd, Math.max(0, Number(position))))
+    translateToRestingPosition(Math.min(state.positionLimitEnd, Math.max(0, Number(position))), transition)
   }
 
   function getNumOfSlides() {
@@ -182,18 +186,18 @@ function Glideable({
       return getCurrentPosition()
     },
 
-    next() {
-      toNextPosition()
+    next(transition) {
+      toNextPosition(transition)
       return this
     },
 
-    prev() {
-      toPreviousPosition()
+    prev(transition) {
+      toPreviousPosition(transition)
       return this
     },
 
-    to(pos = 0) {
-      toPosition(pos)
+    to(pos = 0, transition) {
+      toPosition(pos, transition)
       return this
     },
 
