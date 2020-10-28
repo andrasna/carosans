@@ -3,12 +3,15 @@ import { glideableElements } from './elements'
 import { glideableState } from './state'
 import { glideableClassNames } from './attrNames'
 import { getCSSValue, getWidth, setCSSValue } from './utils'
+import { handleNotNumber } from './exceptions'
 
 function Glideable({
   selector,
   minMoveToChangePosition = 100,
-  cursor = '',
+  cursor,
 }) {
+  handleNotNumber(minMoveToChangePosition)
+
   const state = glideableState()
   const elements = glideableElements(selector)
 
@@ -51,20 +54,20 @@ function Glideable({
   }
 
   function calcCurrentPosition(pointerXCurrent) {
-    const position = -(
+    const nth = -(
       calcDistanceMoved(pointerXCurrent) / state.distanceToNext
     ) + state.restingPosition
     const throttle = 0.3
 
-    if (position < state.positionLimitStart) {
-      return position * throttle
+    if (nth < state.positionLimitStart) {
+      return nth * throttle
     }
 
-    if (position > state.positionLimitEnd) {
-      return state.positionLimitEnd + ((position - state.positionLimitEnd) * throttle)
+    if (nth > state.positionLimitEnd) {
+      return state.positionLimitEnd + ((nth - state.positionLimitEnd) * throttle)
     }
 
-    return position
+    return nth
   }
 
   function calcRestingPosition(pointerXCurrent) {
@@ -92,18 +95,20 @@ function Glideable({
       return Math.floor(currentPosition)
     }
 
-    throw new Error('Function should have returned a value.')
+    throw new Error(
+      'Function should have already returned a number at this point.',
+    )
   }
 
   // Translate Position
 
-  function translateToRestingPosition(position, transition = true) {
-    if (transition === true) {
+  function translateToRestingPosition(nth, isTransitionOn = true) {
+    if (isTransitionOn === true) {
       elements.slides.classList.add(glideableClassNames.isTransitioning)
     }
 
-    setCSSValue(elements.container, '--position', position)
-    state.restingPosition = position
+    setCSSValue(elements.container, '--position', nth)
+    state.restingPosition = nth
   }
 
   function startTranslating(event) {
@@ -149,32 +154,46 @@ function Glideable({
     }
   }
 
-  // Controls
+  // Functions to help control the position
+
+  function isEndPosition() {
+    return state.restingPosition === state.positionLimitEnd
+  }
+
+  function isStartPosition() {
+    return state.restingPosition === 0
+  }
 
   function getCurrentPosition() {
     return state.restingPosition
   }
 
-  function toNextPosition(transition) {
-    translateToRestingPosition(
-      Math.min(state.positionLimitEnd, state.restingPosition + 1),
-      transition,
-    )
-  }
-
-  function toPreviousPosition(transition) {
-    translateToRestingPosition(Math.max(0, state.restingPosition - 1), transition)
-  }
-
-  function toPosition(position, transition) {
-    if (Number.isNaN(position)) {
-      throw new Error('Position must be a number.')
+  function toNextPosition(nthNext, rewind, isTransitionOn) {
+    if (rewind === true && isEndPosition()) {
+      translateToRestingPosition(0, isTransitionOn)
+    } else {
+      translateToRestingPosition(
+        Math.min(state.positionLimitEnd, state.restingPosition + nthNext),
+        isTransitionOn,
+      )
     }
+  }
 
+  function toPreviousPosition(nthPrev, rewind, isTransitionOn) {
+    if (rewind === true && isStartPosition()) {
+      translateToRestingPosition(state.positionLimitEnd, isTransitionOn)
+    } else {
+      translateToRestingPosition(Math.max(0, state.restingPosition - nthPrev), isTransitionOn)
+    }
+  }
+
+  function toPosition(nth, isTransitionOn) {
     translateToRestingPosition(
-      Math.min(state.positionLimitEnd, Math.max(0, Number(position))),
-      transition,
+      Math.min(state.positionLimitEnd, Math.max(0, nth)),
+      isTransitionOn,
     )
+
+    return this
   }
 
   function getNumOfSlides() {
@@ -196,26 +215,29 @@ function Glideable({
   // API
 
   return {
-    pos() {
+    position() {
       return getCurrentPosition()
     },
 
-    next(transition) {
-      toNextPosition(transition)
+    next(nthNext = 1, rewind = true, isTransitionOn = true) {
+      handleNotNumber(nthNext)
+      toNextPosition(nthNext, !!rewind, !!isTransitionOn)
       return this
     },
 
-    prev(transition) {
-      toPreviousPosition(transition)
+    prev(nthPrev = 1, rewind = true, isTransitionOn = true) {
+      handleNotNumber(nthPrev)
+      toPreviousPosition(nthPrev, !!rewind, !!isTransitionOn)
       return this
     },
 
-    to(pos = 0, transition) {
-      toPosition(pos, transition)
+    to(nth = 0, isTransitionOn = true) {
+      handleNotNumber(nth)
+      toPosition(nth, !!isTransitionOn)
       return this
     },
 
-    count() {
+    length() {
       return getNumOfSlides()
     },
 
@@ -225,6 +247,14 @@ function Glideable({
 
     countSteps() {
       return this.count() - this.countInView()
+    },
+
+    isEnd() {
+      return isEndPosition()
+    },
+
+    isStart() {
+      return isStartPosition()
     },
   }
 }

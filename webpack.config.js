@@ -28,7 +28,14 @@ module.exports = (env) => {
             'style-loader',
           ] : []),
           'css-loader',
-          'postcss-loader',
+          ...(!devMode ? [
+          /*
+          Only stable CSS features are used at the moment.
+          Only cssnano is used for minification.
+          Therefore there is no need to run PostCSS in dev mode.
+          */
+            'postcss-loader',
+          ] : []),
         ],
       },
     ],

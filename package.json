@@ -24,8 +24,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "start": "webpack serve --watch --env development --config webpack.config.js",
-    "build": "webpack --mode=production --config webpack.config.js",
+    "start": "webpack serve --env development",
+    "build": "webpack",
     "csslint": "stylelint \"./src/css/**/*.css\"",
     "jslint": "eslint --ext .js ./ --ignore-pattern dist"
   },
