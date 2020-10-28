@@ -154,56 +154,6 @@ function Glideable({
     }
   }
 
-  // Functions to help control the position
-
-  function isEndPosition() {
-    return state.restingPosition === state.positionLimitEnd
-  }
-
-  function isStartPosition() {
-    return state.restingPosition === 0
-  }
-
-  function getCurrentPosition() {
-    return state.restingPosition
-  }
-
-  function toNextPosition(nthNext, rewind, isTransitionOn) {
-    if (rewind === true && isEndPosition()) {
-      translateToRestingPosition(0, isTransitionOn)
-    } else {
-      translateToRestingPosition(
-        Math.min(state.positionLimitEnd, state.restingPosition + nthNext),
-        isTransitionOn,
-      )
-    }
-  }
-
-  function toPreviousPosition(nthPrev, rewind, isTransitionOn) {
-    if (rewind === true && isStartPosition()) {
-      translateToRestingPosition(state.positionLimitEnd, isTransitionOn)
-    } else {
-      translateToRestingPosition(Math.max(0, state.restingPosition - nthPrev), isTransitionOn)
-    }
-  }
-
-  function toPosition(nth, isTransitionOn) {
-    translateToRestingPosition(
-      Math.min(state.positionLimitEnd, Math.max(0, nth)),
-      isTransitionOn,
-    )
-
-    return this
-  }
-
-  function getNumOfSlides() {
-    return elements.slides.getElementsByTagName('li').length
-  }
-
-  function getNumOfSlidesInView() {
-    return Number(getCSSValue(elements.container, '--numOfSlidesInView'))
-  }
-
   // Events
 
   window.addEventListener('resize', handleResize)
@@ -215,46 +165,71 @@ function Glideable({
   // API
 
   return {
+    // Get current position
     position() {
-      return getCurrentPosition()
+      return state.restingPosition
     },
 
+    // Check if it is the ending position
+    isEnd() {
+      return state.restingPosition === state.positionLimitEnd
+    },
+
+    // Check if it is the starting position
+    isStart() {
+      return state.restingPosition === 0
+    },
+
+    // Go to next position
     next(nthNext = 1, rewind = true, isTransitionOn = true) {
       handleNotNumber(nthNext)
-      toNextPosition(nthNext, !!rewind, !!isTransitionOn)
-      return this
+
+      if (rewind === true && this.isEnd()) {
+        translateToRestingPosition(0, !!isTransitionOn)
+      } else {
+        translateToRestingPosition(
+          Math.min(state.positionLimitEnd, state.restingPosition + nthNext),
+          !!isTransitionOn,
+        )
+      }
     },
 
+    // Go to previous position
     prev(nthPrev = 1, rewind = true, isTransitionOn = true) {
       handleNotNumber(nthPrev)
-      toPreviousPosition(nthPrev, !!rewind, !!isTransitionOn)
-      return this
+
+      if (rewind === true && this.isStart()) {
+        translateToRestingPosition(state.positionLimitEnd, !!isTransitionOn)
+      } else {
+        translateToRestingPosition(Math.max(0, state.restingPosition - nthPrev), !!isTransitionOn)
+      }
     },
 
+    // Go to nth position
     to(nth = 0, isTransitionOn = true) {
       handleNotNumber(nth)
-      toPosition(nth, !!isTransitionOn)
+
+      translateToRestingPosition(
+        Math.min(state.positionLimitEnd, Math.max(0, nth)),
+        !!isTransitionOn,
+      )
+
       return this
     },
 
+    // Get the number of slides
     length() {
-      return getNumOfSlides()
+      return elements.slides.getElementsByTagName('li').length
     },
 
+    // Get the number of slides in view
     countInView() {
-      return getNumOfSlidesInView()
+      return Number(getCSSValue(elements.container, '--numOfSlidesInView'))
     },
 
+    // Returns a number - if you go one step at a time, how many steps till you reach the end.
     countSteps() {
-      return this.count() - this.countInView()
-    },
-
-    isEnd() {
-      return isEndPosition()
-    },
-
-    isStart() {
-      return isStartPosition()
+      return this.length() - this.countInView()
     },
   }
 }
