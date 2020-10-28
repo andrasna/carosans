@@ -1,4 +1,3 @@
-import '../css/glideable.css'
 import { glideableElements } from './elements'
 import { glideableState } from './state'
 import { glideableClassNames } from './attrNames'
@@ -175,8 +174,8 @@ function Glideable({
   // API
 
   return {
-    // Get current position
-    position() {
+    // Get last position
+    pos() {
       return state.restingPosition
     },
 

@@ -1,21 +1,22 @@
+import '../css/glideable.css'
 import '../css/example.css'
 import { Glideable } from './index'
 
-const a1 = Glideable({
+Glideable({
   selector: '.one',
   cursor: 'grab',
   minMoveToChangePosition: 75,
 })
 
-setInterval(() => {
-  a1.next()
-}, 2000)
-
 Glideable({
   selector: '.two',
   freeMode: true,
-}).next()
+})
 
-Glideable({
+const g1 = Glideable({
   selector: '.three',
-}).to(99)
+})
+
+setInterval(() => {
+  g1.next()
+}, 4000)
