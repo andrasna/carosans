@@ -9,6 +9,7 @@ function Glideable({
   selector,
   minMoveToChangePosition = 100,
   cursor,
+  freeMode = false,
 }) {
   handleNotNumber(minMoveToChangePosition)
 
@@ -54,26 +55,34 @@ function Glideable({
   }
 
   function calcCurrentPosition(pointerXCurrent) {
-    const nth = -(
-      calcDistanceMoved(pointerXCurrent) / state.distanceToNext
-    ) + state.restingPosition
+    const position = -(calcDistanceMoved(pointerXCurrent) / state.distanceToNext)
+      + state.restingPosition
+
     const throttle = 0.3
 
-    if (nth < state.positionLimitStart) {
-      return nth * throttle
+    if (position < state.positionLimitStart) {
+      return position * throttle
     }
 
-    if (nth > state.positionLimitEnd) {
-      return state.positionLimitEnd + ((nth - state.positionLimitEnd) * throttle)
+    if (position > state.positionLimitEnd) {
+      return state.positionLimitEnd + ((position - state.positionLimitEnd) * throttle)
     }
 
-    return nth
+    return position
   }
 
   function calcRestingPosition(pointerXCurrent) {
     const currentPosition = calcCurrentPosition(pointerXCurrent)
     const distanceMoved = calcDistanceMoved(pointerXCurrent)
     const threshold = minMoveToChangePosition
+
+    if (freeMode === true && distanceMoved < 0) {
+      return Math.min(state.positionLimitEnd, currentPosition + 0.05)
+    }
+
+    if (freeMode === true && distanceMoved > 0) {
+      return Math.max(0, currentPosition - 0.05)
+    }
 
     if (Math.abs(distanceMoved) < threshold) {
       return state.restingPosition
@@ -125,6 +134,7 @@ function Glideable({
   function handlePointerUp(event) {
     setCursorStyle(false)
     translateToRestingPosition(calcRestingPosition(event.clientX))
+
     document.removeEventListener('pointermove', startTranslating)
     document.removeEventListener('pointerup', handlePointerUp)
   }

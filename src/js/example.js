@@ -13,6 +13,7 @@ setInterval(() => {
 
 Glideable({
   selector: '.two',
+  freeMode: true,
 }).next()
 
 Glideable({
