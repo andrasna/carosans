@@ -10,13 +10,12 @@ Glideable({
 
 Glideable({
   selector: '.two',
-  freeMode: true,
 })
 
-const g1 = Glideable({
+const a3 = Glideable({
   selector: '.three',
 })
 
 setInterval(() => {
-  g1.next()
+  a3.next()
 }, 4000)

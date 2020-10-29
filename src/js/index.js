@@ -9,6 +9,7 @@ function Glideable({
   minMoveToChangePosition = 100,
   cursor,
   freeMode = false,
+  explicitInit = false,
 }) {
   handleNotNumber(minMoveToChangePosition)
 
@@ -45,7 +46,7 @@ function Glideable({
       (Math.abs(elements.firstSlide.getBoundingClientRect().left)
         + elements.lastSlide.getBoundingClientRect().right
         - getWidth(elements.container)
-      ) / state.distanceToNext
+      ) / Math.max(1, state.distanceToNext)
     )
   }
 
@@ -169,7 +170,10 @@ function Glideable({
   elements.container.addEventListener('pointerdown', prepareForSwipingMotion)
   elements.slides.addEventListener('transitionend', handleTransitionEnd)
 
-  prepareForMotion()
+  // The default is false. Automatically call init, when calling Glideable.
+  if (explicitInit === false) {
+    prepareForMotion()
+  }
 
   // API
 
@@ -201,6 +205,8 @@ function Glideable({
           !!isTransitionOn,
         )
       }
+
+      return this
     },
 
     // Go to previous position
@@ -212,6 +218,8 @@ function Glideable({
       } else {
         translateToRestingPosition(Math.max(0, state.restingPosition - nthPrev), !!isTransitionOn)
       }
+
+      return this
     },
 
     // Go to nth position
@@ -239,6 +247,10 @@ function Glideable({
     // Returns a number - if you go one step at a time, how many steps till you reach the end.
     countSteps() {
       return this.length() - this.countInView()
+    },
+
+    init() {
+      prepareForMotion()
     },
   }
 }
