@@ -2,7 +2,7 @@ import { getCSSValue, setCSSValue } from './utils'
 
 test('should return CSS property', () => {
   document.body.innerHTML = `
-    <div class="glideable one" style=" --position: 100; "></div>
+    <div class="carosans one" style=" --position: 100; "></div>
   `
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('100')
@@ -10,7 +10,7 @@ test('should return CSS property', () => {
 
 test('should set CSS property', () => {
   document.body.innerHTML = `
-    <div class="glideable one" style=" --position: 2; "></div>
+    <div class="carosans one" style=" --position: 2; "></div>
   `
   setCSSValue(document.querySelector('.one'), '--position', 28)
   const position = getCSSValue(document.querySelector('.one'), '--position')

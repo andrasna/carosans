@@ -1,7 +1,7 @@
 {
-  "name": "glideable",
+  "name": "carosans",
   "version": "1.0.0",
-  "description": "Glideable",
+  "description": "Carosans",
   "main": "src/js/index.js",
   "dependencies": {},
   "devDependencies": {
@@ -44,12 +44,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andrasna/glideable.git"
+    "url": "git+https://github.com/andrasna/carosans.git"
   },
   "author": "Andras Nagy",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/andrasna/glideable/issues"
+    "url": "https://github.com/andrasna/carosans/issues"
   },
-  "homepage": "https://github.com/andrasna/glideable#readme"
+  "homepage": "https://github.com/andrasna/carosans#readme"
 }

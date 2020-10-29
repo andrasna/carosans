@@ -1,10 +1,10 @@
-import { glideableElements } from './elements'
-import { glideableState } from './state'
-import { glideableClassNames } from './attrNames'
+import { carosansElements } from './elements'
+import { carosansState } from './state'
+import { carosansClassNames } from './attrNames'
 import { getCSSValue, getWidth, setCSSValue } from './utils'
 import { handleNotNumber } from './exceptions'
 
-function Glideable({
+function Carosans({
   selector,
   minMoveToChangePosition = 100,
   cursor,
@@ -13,8 +13,8 @@ function Glideable({
 }) {
   handleNotNumber(minMoveToChangePosition)
 
-  const state = glideableState()
-  const elements = glideableElements(selector)
+  const state = carosansState()
+  const elements = carosansElements(selector)
 
   // Cursor style
 
@@ -113,7 +113,7 @@ function Glideable({
 
   function translateToRestingPosition(nth, isTransitionOn = true) {
     if (isTransitionOn === true) {
-      elements.slides.classList.add(glideableClassNames.isTransitioning)
+      elements.slides.classList.add(carosansClassNames.isTransitioning)
     }
 
     setCSSValue(elements.container, '--position', nth)
@@ -128,7 +128,7 @@ function Glideable({
   // Handlers
 
   function handleTransitionEnd(event) {
-    event.currentTarget.classList.remove(glideableClassNames.isTransitioning)
+    event.currentTarget.classList.remove(carosansClassNames.isTransitioning)
   }
 
   function handlePointerUp(event) {
@@ -170,7 +170,7 @@ function Glideable({
   elements.container.addEventListener('pointerdown', prepareForSwipingMotion)
   elements.slides.addEventListener('transitionend', handleTransitionEnd)
 
-  // The default is false. Automatically call init, when calling Glideable.
+  // The default is false. Automatically call init, when calling Carosans.
   if (explicitInit === false) {
     prepareForMotion()
   }
@@ -256,4 +256,4 @@ function Glideable({
   }
 }
 
-export { Glideable }
+export { Carosans }

@@ -1,18 +1,19 @@
-import '../css/glideable.css'
+import '../css/carosans.css'
 import '../css/example.css'
-import { Glideable } from './index'
+import { Carosans } from './index'
 
-Glideable({
+Carosans({
   selector: '.one',
   cursor: 'grab',
   minMoveToChangePosition: 75,
 })
 
-Glideable({
+Carosans({
   selector: '.two',
+  freeMode: true,
 })
 
-const a3 = Glideable({
+const a3 = Carosans({
   selector: '.three',
 })
 

@@ -1,4 +1,4 @@
-export function glideableElements(selector) {
+export function carosansElements(selector) {
   const container = document.querySelector(selector)
 
   if (container === null) {

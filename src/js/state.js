@@ -1,4 +1,4 @@
-function glideableState() {
+function carosansState() {
   return {
     pointerXOrigin: 0,
     restingPosition: 0,
@@ -8,4 +8,4 @@ function glideableState() {
   }
 }
 
-export { glideableState }
+export { carosansState }

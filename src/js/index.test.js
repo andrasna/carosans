@@ -1,9 +1,9 @@
-import { Glideable } from './index'
+import { Carosans } from './index'
 import { getCSSValue } from './utils'
 
 document.body.innerHTML = `
 <div
-  class="glideable one"
+  class="carosans one"
   style="
     --position: 2;
     width: 1600px;
@@ -26,11 +26,11 @@ document.body.innerHTML = `
 </div>
 `
 
-const a1 = Glideable({
+const a1 = Carosans({
   selector: '.one',
 })
 
-const a2 = Glideable({
+const a2 = Carosans({
   selector: '.one',
   explicitInit: true,
 })
@@ -66,7 +66,7 @@ test('should throw error because it is not a number', () => {
 })
 
 test('should increment position by 1 twice', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -78,7 +78,7 @@ test('should increment position by 1 twice', () => {
 })
 
 test('should increment position to nth next', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -91,7 +91,7 @@ test('should increment position to nth next', () => {
 })
 
 test('should increment position to nth next, but cant be greater than end limit', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -103,7 +103,7 @@ test('should increment position to nth next, but cant be greater than end limit'
 })
 
 test('should rewind when reaching end position', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -115,7 +115,7 @@ test('should rewind when reaching end position', () => {
 })
 
 test('should decrement position by 1 twice', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -129,7 +129,7 @@ test('should decrement position by 1 twice', () => {
 })
 
 test('should rewind when reaching start position', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -143,7 +143,7 @@ test('should rewind when reaching start position', () => {
 })
 
 test('should decrement position to nth next', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -156,7 +156,7 @@ test('should decrement position to nth next', () => {
 })
 
 test('should decrement position to nth next, but cant be smaller than start limit', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -169,7 +169,7 @@ test('should decrement position to nth next, but cant be smaller than start limi
 })
 
 test('should go to nth position', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -181,7 +181,7 @@ test('should go to nth position', () => {
 })
 
 test('should go to nth position, but cant be greater than end limit', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
@@ -193,7 +193,7 @@ test('should go to nth position, but cant be greater than end limit', () => {
 })
 
 test('should go to nth position, but cant be smaller than start limit', () => {
-  const a = Glideable({
+  const a = Carosans({
     selector: '.one',
     explicitInit: true,
   })
