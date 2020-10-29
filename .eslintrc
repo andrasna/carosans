@@ -2,7 +2,8 @@
   "extends": "airbnb-base",
   "rules": {
     "semi": [2, "never"],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/extensions": ["error", {"js": "always"}]
   },
   "env": {
     "browser": true,

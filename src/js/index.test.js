@@ -1,5 +1,5 @@
-import { Carosans } from './index'
-import { getCSSValue } from './utils'
+import { Carosans } from './index.js'
+import { getCSSValue } from './utils.js'
 
 document.body.innerHTML = `
 <div

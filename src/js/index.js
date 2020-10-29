@@ -1,8 +1,8 @@
-import { carosansElements } from './elements'
-import { carosansState } from './state'
-import { carosansClassNames } from './attrNames'
-import { getCSSValue, getWidth, setCSSValue } from './utils'
-import { handleNotNumber } from './exceptions'
+import { carosansElements } from './elements.js'
+import { carosansState } from './state.js'
+import { carosansClassNames } from './attrNames.js'
+import { getCSSValue, getWidth, setCSSValue } from './utils.js'
+import { handleNotNumber } from './exceptions.js'
 
 function Carosans({
   selector,
