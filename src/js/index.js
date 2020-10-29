@@ -249,6 +249,7 @@ function Glideable({
       return this.length() - this.countInView()
     },
 
+    // Only needed, if the value of explicitInit is true (default is false).
     init() {
       prepareForMotion()
     },
