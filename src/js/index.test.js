@@ -74,6 +74,7 @@ test('should increment position by 1 twice', () => {
   a.next().next()
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('2')
+  expect(a.pos()).toBe(2)
 })
 
 test('should increment position to nth next', () => {
@@ -86,6 +87,7 @@ test('should increment position to nth next', () => {
   a.next(2)
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('3')
+  expect(a.pos()).toBe(3)
 })
 
 test('should increment position to nth next, but cant be greater than end limit', () => {
@@ -97,6 +99,7 @@ test('should increment position to nth next, but cant be greater than end limit'
   a.next(100)
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('3')
+  expect(a.pos()).toBe(3)
 })
 
 test('should rewind when reaching end position', () => {
@@ -108,6 +111,7 @@ test('should rewind when reaching end position', () => {
   a.next().next().next().next()
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('0')
+  expect(a.pos()).toBe(0)
 })
 
 test('should decrement position by 1 twice', () => {
@@ -121,6 +125,7 @@ test('should decrement position by 1 twice', () => {
 
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('1')
+  expect(a.pos()).toBe(1)
 })
 
 test('should rewind when reaching start position', () => {
@@ -134,6 +139,7 @@ test('should rewind when reaching start position', () => {
 
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('3')
+  expect(a.pos()).toBe(3)
 })
 
 test('should decrement position to nth next', () => {
@@ -146,6 +152,7 @@ test('should decrement position to nth next', () => {
   a.prev(3)
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('0')
+  expect(a.pos()).toBe(0)
 })
 
 test('should decrement position to nth next, but cant be smaller than start limit', () => {
@@ -158,6 +165,7 @@ test('should decrement position to nth next, but cant be smaller than start limi
   a.prev(100)
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('0')
+  expect(a.pos()).toBe(0)
 })
 
 test('should go to nth position', () => {
@@ -169,6 +177,7 @@ test('should go to nth position', () => {
   a.to(3)
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('3')
+  expect(a.pos()).toBe(3)
 })
 
 test('should go to nth position, but cant be greater than end limit', () => {
@@ -180,6 +189,7 @@ test('should go to nth position, but cant be greater than end limit', () => {
   a.to(100)
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('3')
+  expect(a.pos()).toBe(3)
 })
 
 test('should go to nth position, but cant be smaller than start limit', () => {
@@ -191,4 +201,5 @@ test('should go to nth position, but cant be smaller than start limit', () => {
   a.to(-100)
   const position = getCSSValue(document.querySelector('.one'), '--position')
   expect(position).toBe('0')
+  expect(a.pos()).toBe(0)
 })
