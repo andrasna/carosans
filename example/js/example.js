@@ -1,4 +1,4 @@
-import { Carosans } from '../../src/js/index.js'
+import Carosans from '../../src/js/index.js'
 
 Carosans({
   selector: '.one',

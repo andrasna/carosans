@@ -256,4 +256,4 @@ function Carosans({
   }
 }
 
-export { Carosans }
+export default Carosans

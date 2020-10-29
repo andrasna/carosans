@@ -1,4 +1,4 @@
-import { Carosans } from './index.js'
+import Carosans from './index.js'
 import { getCSSValue } from './utils.js'
 
 document.body.innerHTML = `
