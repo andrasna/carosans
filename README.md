@@ -1,6 +1,8 @@
 # Carosans
 
-Carosans is a minimalistic carousel, it is currently in alpha, feedback is welcome!
+Carosans is a minimalistic vanilla JS/CSS carousel.
+
+It is currently in alpha, all feedback is welcome!
 
 ## How to include it into your project
 ---
@@ -244,10 +246,9 @@ Here is an example of using these predefined CSS properties:
   }
 }
 ```
-
 Check out the `examples` folder, to see how things fit together.
 
-You can find a first prototype on codepen:
+For now, you can find an example on codepen:
 
 https://codepen.io/andrasnagy/pen/oNLYgZr
 
