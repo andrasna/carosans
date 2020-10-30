@@ -1,4 +1,4 @@
-import { getCSSValue, setCSSValue } from './utils.js'
+import { getCSSValue, setCSSValue } from '../src/js/utils.js'
 
 test('should return CSS property', () => {
   document.body.innerHTML = `

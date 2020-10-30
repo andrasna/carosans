@@ -9,14 +9,16 @@ function Carosans({
   minMoveToChangePosition = 100,
   cursor,
   freeMode = false,
-  explicitInit = false,
+  explicitPrepare = false,
 }) {
   handleNotNumber(minMoveToChangePosition)
 
   const state = carosansState()
   const elements = carosansElements(selector)
 
-  // Cursor style
+  /**
+   * Cursor style
+   */
 
   function setCursorStyle(isTranslating) {
     switch (cursor) {
@@ -32,7 +34,9 @@ function Carosans({
     }
   }
 
-  // Calculations
+  /**
+   * Calculations
+   */
 
   function calcDistanceToNext() {
     return (
@@ -109,7 +113,9 @@ function Carosans({
     )
   }
 
-  // Translate Position
+  /**
+   * Translate Position
+   */
 
   function translateToRestingPosition(nth, isTransitionOn = true) {
     if (isTransitionOn === true) {
@@ -164,36 +170,65 @@ function Carosans({
     }
   }
 
-  // Events
+  /**
+   * Events
+   */
 
   window.addEventListener('resize', handleResize)
   elements.container.addEventListener('pointerdown', prepareForSwipingMotion)
   elements.slides.addEventListener('transitionend', handleTransitionEnd)
 
-  // The default is false. Automatically call init, when calling Carosans.
-  if (explicitInit === false) {
+  /**
+   * explicitPrepare is false by default, therefore prepareForMotion is called
+   * automatically when calling Carosans.
+   */
+
+  if (explicitPrepare === false) {
     prepareForMotion()
   }
 
   // API
 
   return {
-    // Get last position
+    /**
+     * Get last position.
+     *
+     * @return {number}
+     */
+
     pos() {
       return state.restingPosition
     },
 
-    // Check if it is the ending position
+    /**
+     * Check if it is the ending position.
+     *
+     * @return {boolean}
+     */
+
     isEnd() {
       return state.restingPosition === state.positionLimitEnd
     },
 
-    // Check if it is the starting position
+    /**
+     * Check if it is the starting position.
+     *
+     * @return {boolean}
+     */
+
     isStart() {
       return state.restingPosition === 0
     },
 
-    // Go to next position
+    /**
+     * Go to next position.
+     *
+     * @param {number} [nthNext=1] - The nth next position to go to.
+     * @param {boolean} [rewind=true] - Back to starting position, if it is at the ending position.
+     * @param {boolean} [isTransitionOn=true] - Transition when position changes.
+     * @return {object} - this
+     */
+
     next(nthNext = 1, rewind = true, isTransitionOn = true) {
       handleNotNumber(nthNext)
 
@@ -209,7 +244,15 @@ function Carosans({
       return this
     },
 
-    // Go to previous position
+    /**
+     * Go to previous position.
+     *
+     * @param {number} [nthPrev=1] - The nth previous position to go to.
+     * @param {boolean} [rewind=true] - Back to ending position, if it is at the starting position.
+     * @param {boolean} [isTransitionOn=true] - Transition when position changes.
+     * @return {object} - this
+     */
+
     prev(nthPrev = 1, rewind = true, isTransitionOn = true) {
       handleNotNumber(nthPrev)
 
@@ -222,7 +265,14 @@ function Carosans({
       return this
     },
 
-    // Go to nth position
+    /**
+     * Go to nth position.
+     *
+     * @param {number} [nth=0] - The nth position to go to.
+     * @param {boolean} [isTransitionOn=true] - Transition when position changes.
+     * @return {object} - this
+     */
+
     to(nth = 0, isTransitionOn = true) {
       handleNotNumber(nth)
 
@@ -234,23 +284,42 @@ function Carosans({
       return this
     },
 
-    // Get the number of slides
+    /**
+     * Get the number of slides in the list.
+     *
+     * @return {number}
+     */
+
     length() {
       return elements.slides.getElementsByTagName('li').length
     },
 
-    // Get the number of slides in view
+    /**
+     * Get the number of slides in view.
+     *
+     * @return {number}
+     */
+
     countInView() {
       return Number(getCSSValue(elements.container, '--numOfSlidesInView'))
     },
 
-    // Returns a number - if you go one step at a time, how many steps till you reach the end.
+    /**
+     * Show how many steps till you reach the end, if you go one step at a time.
+     * Useful for pagination.
+     *
+     * @return {number}
+     */
+
     countSteps() {
       return this.length() - this.countInView()
     },
 
-    // Only needed, if the value of explicitInit is true (default is false).
-    init() {
+    /**
+     * Only needed or useful, if the value of explicitPrepare is true (default is false).
+     */
+
+    prep() {
       prepareForMotion()
     },
   }

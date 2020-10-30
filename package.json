@@ -3,6 +3,10 @@
   "version": "0.0.0-alpha",
   "description": "Carosans",
   "main": "src/js/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@babel/preset-env": "^7.12.1",
@@ -21,6 +25,7 @@
   "scripts": {
     "lint:css": "stylelint \"**/*.css\" \"!**/dist/**\"",
     "lint:js": "eslint --ext .js ./ --ignore-pattern dist",
+    "lint": "npm run lint:css & npm run lint:js",
     "test": "jest",
     "build:js": "esbuild src/js/index.js --bundle --minify --outfile=dist/carosans.min.js",
     "build:css": "postcss -u cssnano --no-map -o dist/carosans.min.css src/css/carosans.css",

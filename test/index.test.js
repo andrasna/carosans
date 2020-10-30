@@ -1,5 +1,5 @@
-import Carosans from './index.js'
-import { getCSSValue } from './utils.js'
+import Carosans from '../src/js/index.js'
+import { getCSSValue } from '../src/js/utils.js'
 
 document.body.innerHTML = `
 <div
@@ -32,7 +32,7 @@ const a1 = Carosans({
 
 const a2 = Carosans({
   selector: '.one',
-  explicitInit: true,
+  explicitPrepare: true,
 })
 
 test('should return default position', () => {
@@ -68,7 +68,7 @@ test('should throw error because it is not a number', () => {
 test('should increment position by 1 twice', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.next().next()
@@ -80,7 +80,7 @@ test('should increment position by 1 twice', () => {
 test('should increment position to nth next', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.to(1)
@@ -93,7 +93,7 @@ test('should increment position to nth next', () => {
 test('should increment position to nth next, but cant be greater than end limit', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.next(100)
@@ -105,7 +105,7 @@ test('should increment position to nth next, but cant be greater than end limit'
 test('should rewind when reaching end position', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.next().next().next().next()
@@ -117,7 +117,7 @@ test('should rewind when reaching end position', () => {
 test('should decrement position by 1 twice', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.to(3)
@@ -131,7 +131,7 @@ test('should decrement position by 1 twice', () => {
 test('should rewind when reaching start position', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.to(3)
@@ -145,7 +145,7 @@ test('should rewind when reaching start position', () => {
 test('should decrement position to nth next', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.to(3)
@@ -158,7 +158,7 @@ test('should decrement position to nth next', () => {
 test('should decrement position to nth next, but cant be smaller than start limit', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.to(3)
@@ -171,7 +171,7 @@ test('should decrement position to nth next, but cant be smaller than start limi
 test('should go to nth position', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.to(3)
@@ -183,7 +183,7 @@ test('should go to nth position', () => {
 test('should go to nth position, but cant be greater than end limit', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.to(100)
@@ -195,7 +195,7 @@ test('should go to nth position, but cant be greater than end limit', () => {
 test('should go to nth position, but cant be smaller than start limit', () => {
   const a = Carosans({
     selector: '.one',
-    explicitInit: true,
+    explicitPrepare: true,
   })
 
   a.to(-100)
