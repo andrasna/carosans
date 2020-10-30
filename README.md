@@ -12,7 +12,7 @@ import 'carosans/src/css/carosans.css'
 ```
 or
 ```javascript
-import 'carosans/dist/css/carosans.min.css'
+import 'carosans/dist/carosans.min.css'
 ```
 ## Import JS
 ```javascript
