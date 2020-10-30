@@ -250,7 +250,7 @@ Check out the `examples` folder, to see how things fit together.
 
 For now, you can find an example on codepen:
 
-https://codepen.io/andrasnagy/pen/oNLYgZr
+https://codepen.io/andrasnagy/full/oNLYgZr
 
 ## Contribution
 
