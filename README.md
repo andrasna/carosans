@@ -165,6 +165,19 @@ a1.countInView()
  * Useful for pagination.
  */
 a1.countSteps()
+
+/**
+ * Get carousel elements 
+ */
+a1.getContainer()
+
+a1.getSlides()
+
+a1.getFirst()
+
+a1.getSecond()
+
+a1.getLast()
 ```
 
 ### CSS

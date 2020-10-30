@@ -322,6 +322,30 @@ function Carosans({
     prep() {
       prepareForMotion()
     },
+
+    /**
+     * Get carousel elements.
+     */
+
+    getContainer() {
+      return elements.container
+    },
+
+    getSlides() {
+      return elements.slides
+    },
+
+    getFirst() {
+      return elements.firstSlide
+    },
+
+    getSecond() {
+      return elements.firstSlide
+    },
+
+    getLast() {
+      return elements.firstSlide
+    },
   }
 }
 
