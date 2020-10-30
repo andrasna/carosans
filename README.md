@@ -138,17 +138,17 @@ a1.isStart()
 /**
  * Go to next position.
  */
-a1.next()
+a1.next(nthNext = 1, rewind = true, isTransitionOn = true)
 
 /**
  * Go to previous position.
  */
-a1.prev()
+a1.prev(nthPrev = 1, rewind = true, isTransitionOn = true)
 
 /**
  * Go to nth position.
  */
-a1.to()
+a1.to(nth = 0, isTransitionOn = true)
 
 /**
  * Get the number of slides in the list.
