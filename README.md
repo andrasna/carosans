@@ -1,6 +1,6 @@
 # Carosans
 
-Carosans is a minimalistic vanilla JS/CSS carousel.
+A minimalistic vanilla JS/CSS carousel.
 
 It is currently in alpha, all feedback is welcome!
 
