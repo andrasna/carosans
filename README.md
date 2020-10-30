@@ -266,4 +266,4 @@ Useful commands:
 
 Test cases can be found in the `examples` folder.
 
-Let me know, if you have any questions or suggestions.
+Let me know, if you have any questions or suggestions by opening a new issue.
