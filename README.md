@@ -1,7 +1,6 @@
 # Carosans
 
 A work in progress.
-___
 
 ~~Carosans is a minimalistic carousel, it is currently in alpha, feedback is welcome!~~ - not just yet.
 
@@ -22,7 +21,7 @@ import 'carosans/build/css/carosans.min.css'
 import Carosans from 'carosans'
 ```
 
-## Create a single carousel:
+## Create a single carousel
 
 ```javascript
 Carosans({
@@ -48,11 +47,10 @@ The HTML requires the following absolutely minimum structure:
 
 #### As you can see:
 
-1. It has to be a list inside a `div` that has the `carosans` class. I think if a carousel inherently represents a list of things, then it makes sense to assume this structure. This could be changed though, just let me know if you have different requirements, I don't necessarily want to enforce this rule.
+1. It has to be a list inside a `div`. Why does it have to be a list? I think if a carousel inherently represents a list of things, then it makes sense to assume this structure. Just let me know if you have different requirements, I don't necessarily want to enforce this rule.
+1. The div has to have the `carosans` class. This is for the CSS. For the JS, you have to specify a selector, which could be \'`.carosans`\`, but it doesn't have to be.
 
-2. The `carosans` class on the container `div` is for the CSS styles and is always required.
-
-### Create multiple carousels:
+## Create multiple independent carousels
 
 ```javascript
 Carosans({
@@ -98,7 +96,7 @@ The corresponding HTML:
 </div>
 ```
 
-## Customizing the carousel.
+## Customizing the carousel
 
 ### Options object
 
