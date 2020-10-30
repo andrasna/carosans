@@ -1,14 +1,12 @@
 # Carosans
 
-A work in progress.
+Carosans is a minimalistic carousel, it is currently in alpha, feedback is welcome!
 
-~~Carosans is a minimalistic carousel, it is currently in alpha, feedback is welcome!~~ - not just yet.
+## Installation
 
-## ~~Installation~~
+`npm i carosans`
 
-~~`npm i carosans`~~
-
-## ~~Import CSS~~
+## Import CSS
 ```javascript
 import 'carosans/src/css/carosans.css'
 ```
@@ -16,7 +14,7 @@ or
 ```javascript
 import 'carosans/build/css/carosans.min.css'
 ```
-## ~~Import JS~~
+## Import JS
 ```javascript
 import Carosans from 'carosans'
 ```
