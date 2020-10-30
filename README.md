@@ -2,29 +2,50 @@
 
 Carosans is a minimalistic carousel, it is currently in alpha, feedback is welcome!
 
-## Installation
+## How to include it into your project
+---
+### Install
 
 `npm i carosans`
 
-## Import CSS
+### Import CSS
 ```javascript
 import 'carosans/src/css/carosans.css'
 ```
-or
-```javascript
-import 'carosans/dist/carosans.min.css'
-```
-## Import JS
+
+### Import JS
 ```javascript
 import Carosans from 'carosans'
 ```
 
-## Create a single carousel
+### Alternatively, without import
+```html
+
+<!DOCTYPE html>
+  <head>
+    <link rel="stylesheet" href="carosans.min.css">
+
+    ...
+
+  </head>
+<body>
+
+  ...
+
+  <script src="carosans.min.js"></script>
+  <script>
+    Carosans()
+  </script>
+</body>
+</html>
+```
+
+## How to use
+---
+### Create a single carousel
 
 ```javascript
-Carosans({
-  selector: '.carosans',
-})
+Carosans()
 ```
 
 The HTML requires the following absolutely minimum structure:
@@ -43,12 +64,12 @@ The HTML requires the following absolutely minimum structure:
 </div>
 ```
 
-#### As you can see:
+#### Notes:
 
 1. It has to be a list inside a `div`. Why does it have to be a list? I think if a carousel inherently represents a list of things, then it makes sense to assume this structure. Just let me know if you have different requirements, I don't necessarily want to enforce this rule.
-1. The div has to have the `carosans` class. This is for the CSS. For the JS, you have to specify a selector, which could be \'`.carosans`\`, but it doesn't have to be.
+1. The div has to have the `carosans` class for the CSS. For the JS, you can specify a different selector.
 
-## Create multiple independent carousels
+### Create multiple carousels
 
 ```javascript
 Carosans({
@@ -65,9 +86,8 @@ Carosans({
 The corresponding HTML:
 
 ```html
-
 <!--Carousel 1-->
-<div class="carosans .my-custom-selector-1">
+<div class="carosans my-custom-selector-1">
   <ul>
     <li>
       1 
@@ -79,9 +99,8 @@ The corresponding HTML:
   </ul>
 </div>
 
-
 <!--Carousel 2-->
-<div class="carosans .my-custom-selector-2">
+<div class="carosans my-custom-selector-2">
   <ul>
     <li>
       1 
@@ -95,19 +114,19 @@ The corresponding HTML:
 ```
 
 ## Customizing the carousel
-
+---
 ### Options object
 
-The `Carosans` function accepts an `options object` when a carousel instance is created.
+The `Carosans` function accepts an `options object`.
 
 For example:
 
 ```javascript
 Carosans({
-  selector: '.carosans',        // required, no default
-  minMoveToChangePosition: 50,  // default: 100
-  cursor: 'grab',               // default: your cursor 
-  freeMode: true,               // default: false
+  selector: 'my-custom-selector-1', // default: '.carosans'
+  minMoveToChangePosition: 50,      // default: 100
+  cursor: 'grab',                   // default: your cursor 
+  freeMode: true,                   // default: false
 })
 ```
 
@@ -168,16 +187,11 @@ a1.countSteps()
  * Get carousel elements 
  */
 a1.getContainer()
-
 a1.getSlides()
-
 a1.getFirst()
-
 a1.getLast()
-
 a1.getNth(nth = 1)
 ```
-
 ### CSS
 
 Carosans has a minimum layer of CSS, to make the carousel work, therefore you have to include `carosans.css` into your project.
@@ -187,7 +201,6 @@ This basic CSS layer defines some `custom properties` that you can use.
 Here is an example of using these predefined CSS properties:
 
 ```css
-
 /* Carousel one */
 
 .my-custom-selector-1 {
@@ -252,4 +265,4 @@ Useful commands:
 
 Test cases can be found in the `examples` folder.
 
-Let me know, if you have any questions or suggestions. You can open an issue.
+Let me know, if you have any questions or suggestions.

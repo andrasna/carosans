@@ -4,13 +4,15 @@ import { carosansClassNames } from './attrNames.js'
 import { getCSSValue, getWidth, setCSSValue } from './utils.js'
 import { handleNotNumber } from './exceptions.js'
 
-function Carosans({
-  selector,
-  minMoveToChangePosition = 100,
-  cursor,
-  freeMode = false,
-  explicitPrepare = false,
-}) {
+function Carosans(opts = {}) {
+  const {
+    selector = '.carosans',
+    minMoveToChangePosition = 100,
+    cursor,
+    freeMode = false,
+    explicitPrepare = false,
+  } = opts
+
   handleNotNumber(minMoveToChangePosition)
 
   const state = carosansState()

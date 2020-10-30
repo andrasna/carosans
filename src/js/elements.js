@@ -6,7 +6,6 @@ export function carosansElements(selector) {
   }
 
   return {
-
     get container() {
       return container
     },
