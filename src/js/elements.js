@@ -6,6 +6,7 @@ export function carosansElements(selector) {
   }
 
   return {
+
     get container() {
       return container
     },
@@ -18,12 +19,12 @@ export function carosansElements(selector) {
       return container.querySelector('li:first-child')
     },
 
-    get secondSlide() {
-      return container.querySelector('li:nth-child(2)')
-    },
-
     get lastSlide() {
       return container.querySelector('li:last-child')
+    },
+
+    getNthSlide(nth = 1) {
+      return container.querySelector(`li:nth-child(${nth})`)
     },
   }
 }

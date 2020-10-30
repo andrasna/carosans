@@ -173,9 +173,9 @@ a1.getSlides()
 
 a1.getFirst()
 
-a1.getSecond()
-
 a1.getLast()
+
+a1.getNth(nth = 1)
 ```
 
 ### CSS

@@ -40,7 +40,7 @@ function Carosans({
 
   function calcDistanceToNext() {
     return (
-      elements.secondSlide.getBoundingClientRect().left
+      elements.getNthSlide(2).getBoundingClientRect().left
       - elements.firstSlide.getBoundingClientRect().left
     )
   }
@@ -339,8 +339,8 @@ function Carosans({
       return elements.firstSlide
     },
 
-    getSecond() {
-      return elements.firstSlide
+    getNth(nth) {
+      return elements.getNthSlide(nth)
     },
 
     getLast() {
