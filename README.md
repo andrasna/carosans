@@ -5,7 +5,7 @@ A minimalistic vanilla JS/CSS carousel.
 It is currently in alpha, all feedback is welcome!
 
 ## How to include it into your project
----
+
 ### Install
 
 `npm i carosans`
@@ -43,7 +43,7 @@ import Carosans from 'carosans'
 ```
 
 ## How to use
----
+
 ### Create a single carousel
 
 ```javascript
@@ -116,7 +116,7 @@ The corresponding HTML:
 ```
 
 ## Customizing the carousel
----
+
 ### Options object
 
 The `Carosans` function accepts an `options object`.
