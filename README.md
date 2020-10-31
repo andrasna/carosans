@@ -61,7 +61,6 @@ The HTML requires the following absolutely minimum structure:
     <li>
       2...
     </li>
-    <li>
   </ul>
 </div>
 ```
