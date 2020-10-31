@@ -108,7 +108,6 @@ The corresponding HTML:
     <li>
       2...
     </li>
-    <li>
   </ul>
 </div>
 ```
