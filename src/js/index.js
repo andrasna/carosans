@@ -133,7 +133,9 @@ function Carosans(opts = {}) {
     setCSSValue(elements.container, '--position', calcCurrentPosition(event.clientX))
   }
 
-  // Handlers
+  /**
+   * Handlers
+   */
 
   function handleTransitionEnd(event) {
     event.currentTarget.classList.remove(carosansClassNames.isTransitioning)
@@ -189,7 +191,9 @@ function Carosans(opts = {}) {
     prepareForMotion()
   }
 
-  // API
+  /**
+   * API
+   */
 
   return {
     /**
