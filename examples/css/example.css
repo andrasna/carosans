@@ -7,6 +7,10 @@ ul {
   margin-bottom: 3rem;
 }
 
+.img {
+  max-width: 100%;
+}
+
 /* Carousel one */
 
 .my-custom-selector-1 {

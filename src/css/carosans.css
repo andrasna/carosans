@@ -12,7 +12,7 @@ Find examples of how to customize the carousel with CSS here:
 
 */
 
-.carosans {
+.carousel-outer {
   --position: 0;
   --sumGaps: calc(var(--gapSize, 0rem) * (var(--numOfSlidesInView, 0)));
   --distributableSpace: calc(100% - var(--sumGaps));
@@ -24,7 +24,7 @@ Find examples of how to customize the carousel with CSS here:
   overflow: hidden;
 }
 
-.carosans > ul {
+.carousel-inner {
   transform: translate3d(var(--translateX), 0, 0);
   list-style: none;
   padding-left: 0;
@@ -32,20 +32,16 @@ Find examples of how to customize the carousel with CSS here:
   touch-action: pan-y;
 }
 
-.carosans > ul > li {
+.carousel-item {
   min-width: calc(var(--slideWidth));
   margin-right: var(--gapSize, 0rem);
 }
 
-.carosans > ul > li:last-child {
+.carousel-item:last-child {
   margin-right: 0;
 }
 
-.carosans img {
-  max-width: 100%;
-}
-
-.carosans-transitioning {
+.carousel-transitioning {
   transition-property: transform;
   transition-duration: var(--transitionDuration, .3s);
   transition-timing-function: var(--transitionTiming, ease);
