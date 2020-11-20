@@ -1,6 +1,8 @@
+import { carouselClassNames } from './attrNames.js'
+
 export function createDefaultOptsObj() {
   return {
-    selector: '.carousel-outer',
+    selector: `.${carouselClassNames.outer}`,
     minMoveToChangePosition: 100,
     cursor: 'auto',
     freeMode: false,
