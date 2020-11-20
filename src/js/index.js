@@ -1,29 +1,38 @@
-import { carouselElements } from './elements.js'
-import { carouselState } from './state.js'
+import { getCarouselElements } from './elements.js'
+import { createDefaultStateObj } from './defaultState.js'
 import { carouselClassNames } from './attrNames.js'
 import { getCSSValue, getWidth, setCSSValue } from './utils.js'
 import { handleNotNumber } from './exceptions.js'
+import { createDefaultOptsObj } from './defaultOpts.js'
+import { CarouselContainer, CarouselItem } from './carousel.js'
 
-function Carousel(opts = {}) {
-  const {
-    selector = '.carousel-outer',
-    minMoveToChangePosition = 100,
-    cursor,
-    freeMode = false,
-    explicitPrepare = false,
-  } = opts
+let customElementsCreated = false
 
-  handleNotNumber(minMoveToChangePosition)
+function Carousel(userOpts = {}) {
+  const opts = {
+    ...createDefaultOptsObj(),
+    ...userOpts,
+  }
+  const elements = getCarouselElements(opts.selector)
+  const state = createDefaultStateObj()
 
-  const state = carouselState()
-  const elements = carouselElements(selector)
+  /**
+  * Create custom carousel elements
+  */
+
+  if (!customElementsCreated) {
+    customElements.define('carousel-container', CarouselContainer)
+    customElements.define('carousel-item', CarouselItem)
+    customElementsCreated = true
+  }
+
 
   /**
    * Cursor style
    */
 
   function setCursorStyle(isTranslating) {
-    switch (cursor) {
+    switch (opts.cursor) {
       case 'grab':
         if (isTranslating === true) {
           elements.outer.style.cursor = 'grabbing'
@@ -42,14 +51,14 @@ function Carousel(opts = {}) {
 
   function calcDistanceToNext() {
     return (
-      elements.nthItem(2).getBoundingClientRect().left
-      - elements.nthItem(1).getBoundingClientRect().left
+      elements.getNthItem(2).getBoundingClientRect().left
+      - elements.getNthItem(1).getBoundingClientRect().left
     )
   }
 
   function calcPositionLimitEnd() {
     return (
-      (Math.abs(elements.nthItem(1).getBoundingClientRect().left)
+      (Math.abs(elements.getNthItem(1).getBoundingClientRect().left)
         + elements.lastItem.getBoundingClientRect().right
         - getWidth(elements.outer)
       ) / Math.max(1, state.distanceToNext)
@@ -80,13 +89,13 @@ function Carousel(opts = {}) {
   function calcRestingPosition(pointerXCurrent) {
     const currentPosition = calcCurrentPosition(pointerXCurrent)
     const distanceMoved = calcDistanceMoved(pointerXCurrent)
-    const threshold = minMoveToChangePosition
+    const threshold = opts.minMoveToChangePosition
 
-    if (freeMode === true && distanceMoved < 0) {
+    if (opts.freeMode === true && distanceMoved < 0) {
       return Math.min(state.positionLimitEnd, currentPosition + 0.05)
     }
 
-    if (freeMode === true && distanceMoved > 0) {
+    if (opts.freeMode === true && distanceMoved > 0) {
       return Math.max(0, currentPosition - 0.05)
     }
 
@@ -187,7 +196,7 @@ function Carousel(opts = {}) {
    * automatically when calling Carousel.
    */
 
-  if (explicitPrepare === false) {
+  if (opts.explicitPrepare === false) {
     prepareForMotion()
   }
 
@@ -346,7 +355,7 @@ function Carousel(opts = {}) {
     },
 
     getNth(nth) {
-      return elements.nthItem(nth)
+      return elements.getNthItem(nth)
     },
 
     getLast() {

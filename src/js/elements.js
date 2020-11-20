@@ -1,7 +1,7 @@
 import { carouselClassNames } from './attrNames.js'
 import { handleNullFromSelector } from './exceptions.js'
 
-export function carouselElements(selector) {
+export function getCarouselElements(selector) {
   const outer = document.querySelector(selector)
 
   handleNullFromSelector(outer)
@@ -23,7 +23,7 @@ export function carouselElements(selector) {
       return outer.querySelector(`.${carouselClassNames.item}:last-child`)
     },
 
-    nthItem(nth = 1) {
+    getNthItem(nth = 1) {
       return outer.querySelector(`.${carouselClassNames.item}:nth-child(${nth})`)
     },
   }
