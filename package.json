@@ -32,6 +32,11 @@
     "build:css": "postcss -u cssnano --no-map -o dist/carosans.min.css src/css/carosans.css",
     "build": "npm run build:js & npm run build:css"
   },
+    "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:css & npm run lint:js"
+    }
+  },
   "jest": {
     "transform": {
       "^.+\\.jsx?$": "babel-jest"

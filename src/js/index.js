@@ -4,9 +4,6 @@ import { carouselClassNames } from './attrNames.js'
 import { getCSSValue, getWidth, setCSSValue } from './utils.js'
 import { handleNotNumber } from './exceptions.js'
 import { createDefaultOptsObj } from './defaultOpts.js'
-import { CarouselContainer, CarouselItem } from './carousel.js'
-
-let customElementsCreated = false
 
 function Carousel(userOpts = {}) {
   const opts = {
@@ -15,17 +12,6 @@ function Carousel(userOpts = {}) {
   }
   const elements = getCarouselElements(opts.selector)
   const state = createDefaultStateObj()
-
-  /**
-  * Create custom carousel elements
-  */
-
-  if (!customElementsCreated) {
-    customElements.define('carousel-container', CarouselContainer)
-    customElements.define('carousel-item', CarouselItem)
-    customElementsCreated = true
-  }
-
 
   /**
    * Cursor style
