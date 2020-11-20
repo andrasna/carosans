@@ -1,29 +1,30 @@
-export function carosansElements(selector) {
-  const container = document.querySelector(selector)
+import { carouselClassNames } from './attrNames.js'
+import { handleNullFromSelector } from './exceptions.js'
 
-  if (container === null) {
-    throw new Error('Selector did not match.')
-  }
+export function carouselElements(selector) {
+  const outer = document.querySelector(selector)
+
+  handleNullFromSelector(outer)
 
   return {
-    get container() {
-      return container
+    get outer() {
+      return outer
     },
 
-    get slides() {
-      return container.querySelector('ul:first-child')
+    get inner() {
+      return outer.querySelector(`.${carouselClassNames.inner}`)
     },
 
-    get firstSlide() {
-      return container.querySelector('li:first-child')
+    get firstItem() {
+      return outer.querySelector(`.${carouselClassNames.item}:first-child`)
     },
 
-    get lastSlide() {
-      return container.querySelector('li:last-child')
+    get lastItem() {
+      return outer.querySelector(`.${carouselClassNames.item}:last-child`)
     },
 
-    getNthSlide(nth = 1) {
-      return container.querySelector(`li:nth-child(${nth})`)
+    nthItem(nth = 1) {
+      return outer.querySelector(`.${carouselClassNames.item}:nth-child(${nth})`)
     },
   }
 }

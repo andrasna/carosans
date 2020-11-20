@@ -1,12 +1,12 @@
-import { carosansElements } from './elements.js'
-import { carosansState } from './state.js'
-import { carosansClassNames } from './attrNames.js'
+import { carouselElements } from './elements.js'
+import { carouselState } from './state.js'
+import { carouselClassNames } from './attrNames.js'
 import { getCSSValue, getWidth, setCSSValue } from './utils.js'
 import { handleNotNumber } from './exceptions.js'
 
-function Carosans(opts = {}) {
+function Carousel(opts = {}) {
   const {
-    selector = '.carosans',
+    selector = '.carousel-outer',
     minMoveToChangePosition = 100,
     cursor,
     freeMode = false,
@@ -15,8 +15,8 @@ function Carosans(opts = {}) {
 
   handleNotNumber(minMoveToChangePosition)
 
-  const state = carosansState()
-  const elements = carosansElements(selector)
+  const state = carouselState()
+  const elements = carouselElements(selector)
 
   /**
    * Cursor style
@@ -26,9 +26,9 @@ function Carosans(opts = {}) {
     switch (cursor) {
       case 'grab':
         if (isTranslating === true) {
-          elements.container.style.cursor = 'grabbing'
+          elements.outer.style.cursor = 'grabbing'
         } else {
-          elements.container.style.cursor = 'grab'
+          elements.outer.style.cursor = 'grab'
         }
         break
 
@@ -42,16 +42,16 @@ function Carosans(opts = {}) {
 
   function calcDistanceToNext() {
     return (
-      elements.getNthSlide(2).getBoundingClientRect().left
-      - elements.firstSlide.getBoundingClientRect().left
+      elements.nthItem(2).getBoundingClientRect().left
+      - elements.nthItem(1).getBoundingClientRect().left
     )
   }
 
   function calcPositionLimitEnd() {
     return (
-      (Math.abs(elements.firstSlide.getBoundingClientRect().left)
-        + elements.lastSlide.getBoundingClientRect().right
-        - getWidth(elements.container)
+      (Math.abs(elements.nthItem(1).getBoundingClientRect().left)
+        + elements.lastItem.getBoundingClientRect().right
+        - getWidth(elements.outer)
       ) / Math.max(1, state.distanceToNext)
     )
   }
@@ -111,7 +111,7 @@ function Carosans(opts = {}) {
     }
 
     throw new Error(
-      'Function should have already returned a number at this point.',
+      'Function should have returned a number at this point.',
     )
   }
 
@@ -121,16 +121,16 @@ function Carosans(opts = {}) {
 
   function translateToRestingPosition(nth, isTransitionOn = true) {
     if (isTransitionOn === true) {
-      elements.slides.classList.add(carosansClassNames.isTransitioning)
+      elements.inner.classList.add(carouselClassNames.isTransitioning)
     }
 
-    setCSSValue(elements.container, '--position', nth)
+    setCSSValue(elements.outer, '--position', nth)
     state.restingPosition = nth
   }
 
   function startTranslating(event) {
     setCursorStyle(true)
-    setCSSValue(elements.container, '--position', calcCurrentPosition(event.clientX))
+    setCSSValue(elements.outer, '--position', calcCurrentPosition(event.clientX))
   }
 
   /**
@@ -138,7 +138,7 @@ function Carosans(opts = {}) {
    */
 
   function handleTransitionEnd(event) {
-    event.currentTarget.classList.remove(carosansClassNames.isTransitioning)
+    event.currentTarget.classList.remove(carouselClassNames.isTransitioning)
   }
 
   function handlePointerUp(event) {
@@ -179,12 +179,12 @@ function Carosans(opts = {}) {
    */
 
   window.addEventListener('resize', handleResize)
-  elements.container.addEventListener('pointerdown', prepareForSwipingMotion)
-  elements.slides.addEventListener('transitionend', handleTransitionEnd)
+  elements.outer.addEventListener('pointerdown', prepareForSwipingMotion)
+  elements.inner.addEventListener('transitionend', handleTransitionEnd)
 
   /**
    * explicitPrepare is false by default, therefore prepareForMotion is called
-   * automatically when calling Carosans.
+   * automatically when calling Carousel.
    */
 
   if (explicitPrepare === false) {
@@ -291,23 +291,23 @@ function Carosans(opts = {}) {
     },
 
     /**
-     * Get the number of slides in the list.
+     * Get the number of items in the list.
      *
      * @return {number}
      */
 
     length() {
-      return elements.slides.getElementsByTagName('li').length
+      return elements.inner.getElementsByTagName('li').length
     },
 
     /**
-     * Get the number of slides in view.
+     * Get the number of items in view.
      *
      * @return {number}
      */
 
     countInView() {
-      return Number(getCSSValue(elements.container, '--numOfSlidesInView'))
+      return Number(getCSSValue(elements.outer, '--numOfItemsInView'))
     },
 
     /**
@@ -334,25 +334,25 @@ function Carosans(opts = {}) {
      */
 
     getContainer() {
-      return elements.container
+      return elements.outer
     },
 
-    getSlides() {
-      return elements.slides
+    getInner() {
+      return elements.inner
     },
 
     getFirst() {
-      return elements.firstSlide
+      return elements.firstItem
     },
 
     getNth(nth) {
-      return elements.getNthSlide(nth)
+      return elements.nthItem(nth)
     },
 
     getLast() {
-      return elements.firstSlide
+      return elements.lastItem
     },
   }
 }
 
-export default Carosans
+export default Carousel

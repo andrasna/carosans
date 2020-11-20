@@ -1,36 +1,36 @@
-import Carosans from '../src/js/index.js'
+import Carousel from '../src/js/index.js'
 import { getCSSValue } from '../src/js/utils.js'
 
 document.body.innerHTML = `
 <div
-  class="carosans one"
+  class="carousel-outer one"
   style="
     --position: 2;
     width: 1600px;
-    --numOfSlidesInView: 3;
+    --numOfItemsInView: 3;
   ">
-  <ul style="width: 1600px;">
-    <li style="width: 500px;">
+  <ul class="carousel-inner" style="width: 1600px;">
+    <li class="carousel-item" style="width: 500px;">
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ipsum quos optio illo impedit eveniet.</p>
     </li>
-    <li style="width: 500px;" >
+    <li class="carousel-item" style="width: 500px;" >
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ipsum quos optio illo impedit eveniet.</p>
     </li>
-    <li style="width: 500px;" >
+    <li class="carousel-item" style="width: 500px;" >
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ipsum quos optio illo impedit eveniet.</p>
     </li>
-    <li style="width: 500px;" >
+    <li class="carousel-item" style="width: 500px;" >
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ipsum quos optio illo impedit eveniet.</p>
     </li>
   </ul>
 </div>
 `
 
-const a1 = Carosans({
+const a1 = Carousel({
   selector: '.one',
 })
 
-const a2 = Carosans({
+const a2 = Carousel({
   selector: '.one',
   explicitPrepare: true,
 })
@@ -51,7 +51,7 @@ test('should return length of list', () => {
   expect(a1.length()).toBe(4)
 })
 
-test('should return value of numOfSlidesInView CSS property', () => {
+test('should return value of numOfItemsInView CSS property', () => {
   expect(a1.countInView(3)).toBe(3)
 })
 
@@ -66,7 +66,7 @@ test('should throw error because it is not a number', () => {
 })
 
 test('should increment position by 1 twice', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -78,7 +78,7 @@ test('should increment position by 1 twice', () => {
 })
 
 test('should increment position to nth next', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -91,7 +91,7 @@ test('should increment position to nth next', () => {
 })
 
 test('should increment position to nth next, but cant be greater than end limit', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -103,7 +103,7 @@ test('should increment position to nth next, but cant be greater than end limit'
 })
 
 test('should rewind when reaching end position', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -115,7 +115,7 @@ test('should rewind when reaching end position', () => {
 })
 
 test('should decrement position by 1 twice', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -129,7 +129,7 @@ test('should decrement position by 1 twice', () => {
 })
 
 test('should rewind when reaching start position', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -143,7 +143,7 @@ test('should rewind when reaching start position', () => {
 })
 
 test('should decrement position to nth next', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -156,7 +156,7 @@ test('should decrement position to nth next', () => {
 })
 
 test('should decrement position to nth next, but cant be smaller than start limit', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -169,7 +169,7 @@ test('should decrement position to nth next, but cant be smaller than start limi
 })
 
 test('should go to nth position', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -181,7 +181,7 @@ test('should go to nth position', () => {
 })
 
 test('should go to nth position, but cant be greater than end limit', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })
@@ -193,7 +193,7 @@ test('should go to nth position, but cant be greater than end limit', () => {
 })
 
 test('should go to nth position, but cant be smaller than start limit', () => {
-  const a = Carosans({
+  const a = Carousel({
     selector: '.one',
     explicitPrepare: true,
   })

@@ -1,4 +1,4 @@
-function carosansState() {
+function carouselState() {
   return {
     pointerXOrigin: 0,
     restingPosition: 0,
@@ -8,4 +8,4 @@ function carosansState() {
   }
 }
 
-export { carosansState }
+export { carouselState }

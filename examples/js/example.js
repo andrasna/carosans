@@ -1,17 +1,17 @@
-import Carosans from '../../src/js/index.js'
+import Carousel from '../../src/js/index.js'
 
-Carosans({
+Carousel({
   selector: '.my-custom-selector-1',
   cursor: 'grab',
   minMoveToChangePosition: 75,
 })
 
-Carosans({
+Carousel({
   selector: '.my-custom-selector-2',
   freeMode: true,
 })
 
-const a3 = Carosans({
+const a3 = Carousel({
   selector: '.my-custom-selector-3',
 })
 

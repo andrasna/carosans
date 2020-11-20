@@ -1,3 +1,6 @@
-export const carosansClassNames = {
-  isTransitioning: 'carosans-transitioning',
+export const carouselClassNames = {
+  outer: 'carousel-outer',
+  inner: 'carousel-inner',
+  item: 'carousel-item',
+  isTransitioning: 'carousel-transitioning',
 }
