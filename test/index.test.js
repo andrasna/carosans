@@ -30,7 +30,7 @@ function createDocumentMock() {
 }
 
 /**
- * Before each tests
+ * Before each test
  */
 
 let carousel = null
