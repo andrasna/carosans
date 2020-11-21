@@ -134,64 +134,64 @@ Carousel({
 ### API guide:
 
 ```javascript
-const a1 = Carousel({
+const carousel = Carousel({
   selector: '.my-custom-selector-1',
 })
 
 /**
  * Get last position.
  */
-a1.pos()
+carousel.pos()
 
 /**
  * Check if it is the ending position.
  */
-a1.isEnd()
+carousel.isEnd()
 
 /**
  * Check if it is the starting position.
  */
-a1.isStart()
+carousel.isStart()
 
 /**
  * Go to next position.
  */
-a1.next(nthNext = 1, rewind = true, isTransitionOn = true)
+carousel.next(nthNext = 1, rewind = true, isTransitionOn = true)
 
 /**
  * Go to previous position.
  */
-a1.prev(nthPrev = 1, rewind = true, isTransitionOn = true)
+carousel.prev(nthPrev = 1, rewind = true, isTransitionOn = true)
 
 /**
  * Go to nth position.
  */
-a1.to(nth = 0, isTransitionOn = true)
+carousel.to(nth = 0, isTransitionOn = true)
 
 /**
  * Get the number of slides in the list.
  */
-a1.length()
+carousel.length()
 
 /**
  * Get the number of slides in view.
  */
-a1.countInView()
+carousel.countInView()
 
 /**
  * Show how many steps till you reach the end, if you go one step at a time.
  * Useful for pagination.
  */
-a1.countSteps()
+carousel.countSteps()
 
 /**
  * Get carousel elements
  */
-a1.getContainer()
-a1.getSlides()
-a1.getFirst()
-a1.getLast()
-a1.getNth(nth = 1)
+carousel.getContainer()
+carousel.getSlides()
+carousel.getFirst()
+carousel.getLast()
+carousel.getNth(nth = 1)
 ```
 ### CSS
 
