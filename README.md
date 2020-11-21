@@ -118,7 +118,7 @@ The corresponding HTML:
 
 ### Options object
 
-The `Carousel function accepts an `options object`.
+The `Carousel` function accepts an `options object`.
 
 An example using all the available options:
 
