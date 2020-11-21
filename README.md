@@ -120,7 +120,7 @@ The corresponding HTML:
 
 The `Carousel` function accepts an `options object`.
 
-An example using all the available options:
+Here is an example whith all the available options:
 
 ```javascript
 Carousel({
