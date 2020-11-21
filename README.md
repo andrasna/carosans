@@ -205,8 +205,8 @@ Here is an example of using these predefined CSS properties:
 /* Carousel one */
 
 .my-custom-selector-1 {
-  --numOfSlidesInView: 1;
-  --endSlideVis: .3;
+  --numOfItemsInView: 1;
+  --portionVisibleOfExtraItem: .3;
   --gapSize: 1rem;
   --transitionDuration: .35s;
   --transitionTiming: ease;
@@ -214,34 +214,34 @@ Here is an example of using these predefined CSS properties:
 
 @media (min-width: 50rem) {
   .my-custom-selector-1 {
-    --numOfSlidesInView: 3;
+    --numOfItemsInView: 3;
     --gapSize: 1.5rem;
   }
 }
 
 @media (min-width: 75rem) {
   .my-custom-selector-1 {
-    --numOfSlidesInView: 4;
+    --numOfItemsInView: 4;
   }
 }
 
 /* Carousel two */
 
 .my-custom-selector-2 {
-  --numOfSlidesInView: 1;
+  --numOfItemsInView: 1;
   --transitionDuration: .35s;
   --transitionTiming: ease;
 }
 
 @media (min-width: 50rem) {
   .my-custom-selector-2 {
-    --numOfSlidesInView: 2;
+    --numOfItemsInView: 2;
   }
 }
 
 @media (min-width: 75rem) {
   .my-custom-selector-2 {
-    --numOfSlidesInView: 3;
+    --numOfItemsInView: 3;
   }
 }
 ```
