@@ -6,7 +6,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'carousel.min.js',
-    library: 'Carosans',
+    library: 'Carousel',
     libraryTarget: 'umd',
     globalObject: 'this',
     umdNamedDefine: true,
