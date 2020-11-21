@@ -12,12 +12,12 @@ It is currently in alpha, all feedback is welcome!
 
 ### Import CSS
 ```javascript
-import 'carosans/src/css/carosans.css'
+import 'carosans/src/css/carousel.css'
 ```
 
 ### Import JS
 ```javascript
-import Carosans from 'carosans'
+import Carousel from 'carosans'
 ```
 
 ### Alternatively, without import
@@ -25,7 +25,7 @@ import Carosans from 'carosans'
 
 <!DOCTYPE html>
   <head>
-    <link rel="stylesheet" href="carosans.min.css">
+    <link rel="stylesheet" href="carousel.min.css">
 
     ...
 
@@ -34,9 +34,9 @@ import Carosans from 'carosans'
 
   ...
 
-  <script src="carosans.min.js"></script>
+  <script src="carousel.min.js"></script>
   <script>
-    Carosans()
+    Carousel()
   </script>
 </body>
 </html>
@@ -47,7 +47,7 @@ import Carosans from 'carosans'
 ### Create a single carousel
 
 ```javascript
-Carosans()
+Carousel()
 ```
 
 The HTML requires the following absolutely minimum structure:
@@ -74,13 +74,13 @@ The HTML requires the following absolutely minimum structure:
 ### Create multiple carousels
 
 ```javascript
-Carosans({
+Carousel({
   selector: '.my-custom-selector-1',
 })
 ```
 
 ```javascript
-Carosans({
+Carousel({
   selector: '.my-custom-selector-2',
 })
 ```
@@ -118,12 +118,12 @@ The corresponding HTML:
 
 ### Options object
 
-The `Carosans` function accepts an `options object`.
+The `Carousel function accepts an `options object`.
 
 An example using all the available options:
 
 ```javascript
-Carosans({
+Carousel({
   selector: 'my-custom-selector-1', // default: '.carousel-outer'
   minMoveToChangePosition: 50,      // default: 100
   cursor: 'grab',                   // default: auto
@@ -134,7 +134,7 @@ Carosans({
 ### API guide:
 
 ```javascript
-const a1 = Carosans({
+const a1 = Carousel({
   selector: '.my-custom-selector-1',
 })
 
