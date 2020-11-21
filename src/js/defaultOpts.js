@@ -6,6 +6,5 @@ export function createDefaultOptsObj() {
     minMoveToChangePosition: 100,
     cursor: 'auto',
     freeMode: false,
-    explicitPrepare: false,
   }
 }
