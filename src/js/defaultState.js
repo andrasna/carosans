@@ -2,8 +2,8 @@ export function createDefaultStateObj() {
   return {
     pointerXOrigin: 0,
     restingPosition: 0,
-    distanceToNext: 400,
+    distanceToNext: 0,
     positionLimitStart: 0,
-    positionLimitEnd: 3,
+    positionLimitEnd: 0,
   }
 }

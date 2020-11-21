@@ -29,7 +29,7 @@
     "lint:js": "eslint --ext .js ./ --ignore-pattern dist",
     "lint": "npm run lint:css & npm run lint:js",
     "build:js": "webpack",
-    "build:css": "postcss -u cssnano --no-map -o dist/carosans.min.css src/css/carosans.css",
+    "build:css": "postcss -u cssnano --no-map -o dist/carousel.min.css src/css/carousel.css",
     "build": "npm run build:js & npm run build:css"
   },
     "husky": {

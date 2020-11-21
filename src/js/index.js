@@ -176,15 +176,7 @@ function Carousel(userOpts = {}) {
   window.addEventListener('resize', handleResize)
   elements.outer.addEventListener('pointerdown', prepareForSwipingMotion)
   elements.inner.addEventListener('transitionend', handleTransitionEnd)
-
-  /**
-   * explicitPrepare is false by default, therefore prepareForMotion is called
-   * automatically when calling Carousel.
-   */
-
-  if (opts.explicitPrepare === false) {
-    prepareForMotion()
-  }
+  prepareForMotion()
 
   /**
    * API
@@ -314,14 +306,6 @@ function Carousel(userOpts = {}) {
 
     countSteps() {
       return this.length() - this.countInView()
-    },
-
-    /**
-     * Only needed or useful, if the value of explicitPrepare is true (default is false).
-     */
-
-    prep() {
-      prepareForMotion()
     },
 
     /**

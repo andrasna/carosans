@@ -5,7 +5,7 @@ module.exports = {
   entry: path.join(__dirname, 'src/js/index.js'),
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'carosans.min.js',
+    filename: 'carousel.min.js',
     library: 'Carosans',
     libraryTarget: 'umd',
     globalObject: 'this',

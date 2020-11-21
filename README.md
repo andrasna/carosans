@@ -53,12 +53,13 @@ Carosans()
 The HTML requires the following absolutely minimum structure:
 
 ```html
-<div class="carosans">
-  <ul>
-    <li>
-      1 
+
+<div class="carousel-outer">
+  <ul class="carousel-inner">
+    <li class="carousel-item">
+      1
     </li>
-    <li>
+    <li class="carousel-item">
       2...
     </li>
   </ul>
@@ -67,8 +68,8 @@ The HTML requires the following absolutely minimum structure:
 
 #### Notes:
 
-1. It has to be a list inside a `div`. Why does it have to be a list? I think if a carousel inherently represents a list of things, then it makes sense to assume this structure. Just let me know if you have different requirements, I don't necessarily want to enforce this rule.
-1. The div has to have the `carosans` class for the CSS. For the JS, you can specify a different selector.
+- The above class names are required.
+- You can use div's or other elements, instead of lists.
 
 ### Create multiple carousels
 
@@ -88,28 +89,29 @@ The corresponding HTML:
 
 ```html
 <!--Carousel 1-->
-<div class="carosans my-custom-selector-1">
-  <ul>
-    <li>
-      1 
-    </li>
-    <li>
+<div class="carousel-outer my-custom-selector-1">
+  <div class="carousel-inner">
+    <div class="carousel-item">
+      1
+    </div>
+    <div class="carousel-item">
       2...
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
 
 <!--Carousel 2-->
-<div class="carosans my-custom-selector-2">
-  <ul>
-    <li>
-      1 
-    </li>
-    <li>
+<div class="carousel-outer my-custom-selector-2">
+  <div class="carousel-inner">
+    <div class="carousel-item">
+      1
+    </div>
+    <div class="carousel-item">
       2...
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
+
 ```
 
 ## Customizing the carousel
@@ -118,13 +120,13 @@ The corresponding HTML:
 
 The `Carosans` function accepts an `options object`.
 
-For example:
+An example using all the available options:
 
 ```javascript
 Carosans({
-  selector: 'my-custom-selector-1', // default: '.carosans'
+  selector: 'my-custom-selector-1', // default: '.carousel-outer'
   minMoveToChangePosition: 50,      // default: 100
-  cursor: 'grab',                   // default: your cursor 
+  cursor: 'grab',                   // default: auto
   freeMode: true,                   // default: false
 })
 ```
@@ -183,7 +185,7 @@ a1.countInView()
 a1.countSteps()
 
 /**
- * Get carousel elements 
+ * Get carousel elements
  */
 a1.getContainer()
 a1.getSlides()
@@ -193,7 +195,7 @@ a1.getNth(nth = 1)
 ```
 ### CSS
 
-Carosans has a minimum layer of CSS, to make the carousel work, therefore you have to include `carosans.css` into your project.
+Carosans has a minimum layer of CSS, to make the carousel work, therefore you have to include `carousel.css` into your project.
 
 This basic CSS layer defines some `custom properties` that you can use.
 
