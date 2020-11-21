@@ -68,8 +68,8 @@ The HTML requires the following absolutely minimum structure:
 
 #### Notes:
 
-- The above class names are required.
-- You can use div's or other elements, instead of lists.
+- The class names (`carousel-outer`, `carousel-inner`, `carousel-item`) are required.
+- It doesn't have to be a list with list items, you can use div's or other elements.
 
 ### Create multiple carousels
 
