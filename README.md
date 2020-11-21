@@ -126,7 +126,7 @@ Here is an example whith all the available options:
 Carousel({
   selector: '.my-custom-selector-1',  // default: '.carousel-outer'
   minMoveToChangePosition: 50,        // default: 100
-  cursor: 'grab',                     // default: auto
+  cursor: 'grab',                     // default: 'auto'
   freeMode: true,                     // default: false
 })
 ```
