@@ -247,7 +247,7 @@ Here is an example of using these predefined CSS properties:
 ```
 Check out the `examples` folder, to see how things fit together.
 
-For now, you can find an example on codepen:
+You can find an example on codepen:
 
 https://codepen.io/andrasnagy/full/oNLYgZr
 
