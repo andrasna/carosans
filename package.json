@@ -1,6 +1,6 @@
 {
   "name": "carosans",
-  "version": "2.0.3-alpha",
+  "version": "2.0.4-alpha",
   "description": "Carosans",
   "main": "src/js/index.js",
   "files": [
