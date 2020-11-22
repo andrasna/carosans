@@ -312,7 +312,7 @@ function Carousel(userOpts = {}) {
      * Get carousel elements.
      */
 
-    getContainer() {
+    getOuter() {
       return elements.outer
     },
 

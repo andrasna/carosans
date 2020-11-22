@@ -187,11 +187,11 @@ carousel.countSteps()
 /**
  * Get carousel elements
  */
-carousel.getContainer()
-carousel.getSlides()
+carousel.getOuter()
+carousel.getInner()
 carousel.getFirst()
-carousel.getLast()
 carousel.getNth(nth = 1)
+carousel.getLast()
 ```
 ### CSS
 
