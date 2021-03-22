@@ -1,4 +1,4 @@
-import { Carousel } from '../../src/js/index.js'
+import Carousel from '../../src/js/index.js'
 
 const carousel1 = Carousel({
   selector: '.my-custom-selector-1',

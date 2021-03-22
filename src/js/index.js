@@ -140,4 +140,4 @@ function Carousel(userOpts = {}) {
   }
 }
 
-export { Carousel }
+export default Carousel
