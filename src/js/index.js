@@ -42,7 +42,7 @@ function Carousel(userOpts = {}) {
       return position * throttle
     }
 
-    if (position > state.positionLimitEnd) {
+    if (state.positionLimitEnd < position) {
       return state.positionLimitEnd + ((position - state.positionLimitEnd) * throttle)
     }
 
@@ -119,7 +119,7 @@ function Carousel(userOpts = {}) {
   function handleResize() {
     prepareForMotion()
 
-    if (state.restingPosition > state.positionLimitEnd) {
+    if (state.positionLimitEnd < state.restingPosition) {
       translateToRestingPosition(state.positionLimitEnd)
     }
   }
