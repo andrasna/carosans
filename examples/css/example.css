@@ -14,8 +14,8 @@ img {
 /* Carousel one */
 
 .my-custom-selector-1 {
-  --numOfItemsInView: 1;
-  --portionVisibleOfExtraItem: .3;
+  --numOfItemsInView: 2;
+  --portionVisibleOfLastInView: .3;
   --gapSize: 1rem;
   --transitionDuration: .35s;
   --transitionTiming: ease;
