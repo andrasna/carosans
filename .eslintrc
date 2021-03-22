@@ -3,7 +3,8 @@
   "rules": {
     "semi": [2, "never"],
     "import/prefer-default-export": "off",
-    "import/extensions": ["error", {"js": "always"}]
+    "import/extensions": ["error", {"js": "always"}],
+    "yoda": ["error", "never", { "onlyEquality": true }]
   },
   "env": {
     "browser": true,

@@ -62,7 +62,7 @@ function Carousel(userOpts = {}) {
       return state.positionLimitStart
     }
 
-    if (currentPosition > state.positionLimitEnd) {
+    if (state.positionLimitEnd < currentPosition) {
       return state.positionLimitEnd
     }
 
@@ -70,7 +70,7 @@ function Carousel(userOpts = {}) {
       return Math.min(state.positionLimitEnd, (Math.ceil(currentPosition)))
     }
 
-    if (distanceMoved > 0) {
+    if (0 < distanceMoved) {
       return Math.floor(currentPosition)
     }
 
